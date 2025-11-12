@@ -11,7 +11,9 @@ function LoginPage() {
       <div className=" md:mt-10  p-4 w-[350px] md:w-[400px] h-[400px]">
         <div className="flex flex-col justify-center items-center gap-0.5 md:gap-2 mb-5">
           <h1 className=" text-2xl md:text-3xl font-semibold">Sign in</h1>
-          <p className="text-base">Enter your account to sign in</p>
+          <p className="text-base whitespace-nowrap">
+            Enter your account to sign in
+          </p>
         </div>
         <LoginForm />
         <SignUpLink />
