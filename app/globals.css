@@ -24,3 +24,13 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* Custom css styles and adjustment */
+/* need to replace later */
+
+@layer utilities {
+  .size-screen {
+    @apply w-screen h-screen;
+  }
+}
+
+/* Ends here  */
