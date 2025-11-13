@@ -1,7 +1,15 @@
+"use client";
+
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 function RegisterForm() {
+  // move to a hook later
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [showError, setShowError] = useState<boolean>(false);
+
   return (
     <form action="" className=" flex flex-col gap-7 text-base ">
       <div className="flex flex-col gap-2">
