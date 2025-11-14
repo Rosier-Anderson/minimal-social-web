@@ -8,7 +8,7 @@ function LoginForm() {
   const [password, setPassword] = useState<string>("");
   const [showError, setShowError] = useState<boolean>(false);
   return (
-    <form action="" className=" flex flex-col gap-7 text-base ">
+    <form action="" className=" flex flex-col gap-5 text-base ">
       <div className="flex flex-col gap-2">
         <label htmlFor="email">Email</label>
         <input

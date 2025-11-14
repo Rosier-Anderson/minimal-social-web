@@ -11,7 +11,7 @@ function RegisterForm() {
   const [showError, setShowError] = useState<boolean>(false);
 
   return (
-    <form action="" className=" flex flex-col gap-7 text-base ">
+    <form action="" className=" flex flex-col gap-4 text-base ">
       <div className="flex flex-col gap-2">
         <label htmlFor="user-name">User name</label>
         <input
@@ -37,18 +37,18 @@ function RegisterForm() {
           id="password"
           type="password"
           placeholder=""
-          // Etra margin-top => mt2 for better allignment
-          className=" p-3 w-full text-base rounded-lg h-11 sm:h-12 bg-gray-100 outline-neutral-950 mt-2"
+          // Etra margin-top => mt2 for better allignment ?
+          className=" p-3 w-full text-base rounded-lg h-11 sm:h-12 bg-gray-100 outline-neutral-950 "
         />
       </div>
       <div className="flex flex-col gap-2 ">
-        <label htmlFor="password">Confirm Password</label>
+        <label htmlFor="confirmPassword">Confirm Password</label>
         <input
-          id="password"
+          id="confirmPassword"
           type="password"
           placeholder=""
-          // Etra margin-top => mt2 for better allignment
-          className=" p-3 w-full text-base rounded-lg h-11 sm:h-12 bg-gray-100 outline-neutral-950 mt-2"
+          // Etra margin-top => mt2 for better allignment ?
+          className=" p-3 w-full text-base rounded-lg h-11 sm:h-12 bg-gray-100 outline-neutral-950 "
         />
       </div>
 

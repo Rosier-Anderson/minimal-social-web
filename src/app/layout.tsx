@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
-import { poppins } from "../ui/fonts";
-
+import { poppins } from "../ui/fonts/fonts";
 export const metadata: Metadata = {
   title: "Minimal-social",
   description: "A mini social app inspired by Instagram",
+
+  icons: [
+    {
+      url: "/logo-light.png",
+      href: "/public/logo-light.png",
+    },
+  ],
 };
 
 export default function RootLayout({

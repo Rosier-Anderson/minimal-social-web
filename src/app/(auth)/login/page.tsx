@@ -8,7 +8,7 @@ function LoginPage() {
       id="box"
       className="flex justify-center size-screen text-sm md:text-lg lg:text-xl overflow-auto"
     >
-      <div className="mt-4 sm:mt-10 p-4 w-sm sm:w-[400px] h-fit shadow-sm rounded-lg">
+      <div className="mt-8 sm:mt-10 p-4 w-sm sm:w-[400px] h-fit shadow-sm rounded-lg">
         <div className="flex flex-col justify-center items-center gap-0.5 sm:gap-2 mb-5">
           <h1 className=" text-2xl sm:text-3xl font-semibold">Sign in</h1>
           <p className="text-base whitespace-nowrap">
