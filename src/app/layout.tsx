@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
-import { poppins } from "@/fonts";
+import { poppins } from "../ui/fonts";
 
 export const metadata: Metadata = {
   title: "Minimal-social",
