@@ -30,7 +30,7 @@ function LoginForm() {
           <label htmlFor="password">Password</label>
           <Link
             // remenber to change the href on local or production
-            href="https://djj6yj-3000.csb.app/forgot-password"
+            href="https://djj6yj-3000.csb.app/password/forgot"
             className=" flex items-center underline text-sm max-sm:text-sm"
           >
             Forgot password?

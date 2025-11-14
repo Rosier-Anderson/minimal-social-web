@@ -1,15 +1,15 @@
 "use client";
-
-import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 
 function RegisterForm() {
-  // move to a hook later
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [showError, setShowError] = useState<boolean>(false);
+  // const { formState, showError, handleChange, validate, resetForm } =
+  //   useRegisterForm();
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   if (!validate()) return;
 
+  //   console.log(formState);
+  // };
   return (
     <form action="" className=" flex flex-col gap-4 text-base ">
       <div className="flex flex-col gap-2">
@@ -20,6 +20,9 @@ function RegisterForm() {
           placeholder="John Doe"
           className="p-3 w-full text-base rounded-lg h-11 sm:h-12 bg-gray-100 outline-neutral-950"
         />
+        {/* {showError && (
+          <p className="text-xs text-red-500 ">Please enter your name</p>
+        )} */}
       </div>
       <div className="flex flex-col gap-2">
         <label htmlFor="email">Email</label>
