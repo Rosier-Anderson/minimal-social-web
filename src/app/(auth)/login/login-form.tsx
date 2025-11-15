@@ -1,26 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
 
 function LoginForm() {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [showError, setShowError] = useState<boolean>(false);
   return (
     <form action="" className=" flex flex-col gap-5 text-base ">
       <div className="flex flex-col gap-2">
         <label htmlFor="email">Email</label>
         <input
+          name="email"
           id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
           type="email"
           placeholder="m@exemple.com"
           className="p-3 w-full text-base rounded-lg h-11 sm:h-12 bg-gray-100 outline-neutral-950"
           required
         />
-        {showError && (
+        {false && (
           <p className="text-xs text-red-500 ">Please enter email address</p>
         )}
       </div>
@@ -38,16 +33,15 @@ function LoginForm() {
         </div>
 
         <input
+          name="password"
           id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder=""
           // Etra margin-top => mt2 for better allignment
           className=" p-3 w-full text-base rounded-lg h-11 sm:h-12 bg-gray-100 outline-neutral-950 mt-2"
           required
         />
-        {showError && (
+        {false && (
           <p className=" text-red-500 text-xs">Please enter password address</p>
         )}
       </div>
