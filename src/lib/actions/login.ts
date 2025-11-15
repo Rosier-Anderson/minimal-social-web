@@ -1,12 +1,11 @@
-"use sever";
-
+"use server";
 import z from "zod";
 
 const formDataSchema = z.object({
-  email: z.string({ message: "Please enter a user name" }).trim(),
+  email: z.email({ message: "Please enter email" }).trim(),
   password: z.string({ message: "Please enter password" }),
 });
-export default function login(prevState: unknown, formData: FormData) {
+export default async function login(prevState: unknown, formData: FormData) {
   const formDataResult = formDataSchema.safeParse(Object.fromEntries(formData));
 
   if (!formDataResult.success) {

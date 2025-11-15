@@ -16,7 +16,12 @@ function RegisterForm() {
   //   console.log(formState);
   // };
   return (
-    <form action={registerAction} className=" flex flex-col gap-4 text-base ">
+    <form
+      action={registerAction}
+      method="POST"
+      name="registerForm"
+      className=" flex flex-col gap-4 text-base "
+    >
       <div className="flex flex-col gap-2">
         <label htmlFor="name">User name</label>
         <input

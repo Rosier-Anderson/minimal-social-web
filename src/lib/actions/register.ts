@@ -1,4 +1,4 @@
-"use sever ";
+"use server";
 import z, { email } from "zod";
 
 const formDataSchema = z
@@ -17,7 +17,7 @@ const formDataSchema = z
     error: "Passwords don't match",
     path: ["confirmPassword"], // path of error
   });
-export default function register(prevState: unknown, formData: FormData) {
+export default async function register(prevState: unknown, formData: FormData) {
   const formDataResult = formDataSchema.safeParse(Object.fromEntries(formData));
 
   if (!formDataResult.success) {

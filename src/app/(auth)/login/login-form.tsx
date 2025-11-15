@@ -1,10 +1,18 @@
 "use client";
 
+import login from "@/src/lib/actions/login";
 import Link from "next/link";
+import { useActionState } from "react";
 
 function LoginForm() {
+  const [state, formAction, isPending] = useActionState(login, undefined);
   return (
-    <form action="" className=" flex flex-col gap-5 text-base ">
+    <form
+      action={formAction}
+      method="POST"
+      name="loginForm"
+      className=" flex flex-col gap-5 text-base "
+    >
       <div className="flex flex-col gap-2">
         <label htmlFor="email">Email</label>
         <input
@@ -13,10 +21,11 @@ function LoginForm() {
           type="email"
           placeholder="m@exemple.com"
           className="p-3 w-full text-base rounded-lg h-11 sm:h-12 bg-gray-100 outline-neutral-950"
-          required
         />
-        {false && (
-          <p className="text-xs text-red-500 ">Please enter email address</p>
+        {state?.errors && (
+          <p className="text-xs text-red-500 ">
+            {state.errors.properties?.email?.errors.toString()}
+          </p>
         )}
       </div>
       <div className="">
@@ -39,10 +48,11 @@ function LoginForm() {
           placeholder=""
           // Etra margin-top => mt2 for better allignment
           className=" p-3 w-full text-base rounded-lg h-11 sm:h-12 bg-gray-100 outline-neutral-950 mt-2"
-          required
         />
-        {false && (
-          <p className=" text-red-500 text-xs">Please enter password address</p>
+        {state?.errors && (
+          <p className="text-xs text-red-500 ">
+            {state.errors.properties?.password?.errors.toString()}
+          </p>
         )}
       </div>
       <LoginButton />
