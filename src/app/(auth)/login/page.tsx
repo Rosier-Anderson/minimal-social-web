@@ -30,7 +30,7 @@ const SignUpLink = () => {
       </p>
       <Link
         // remenber to change it in production or localS
-        href="https://djj6yj-3000.csb.app/register"
+        href="/register"
         className="underline whitespace-nowrap max-sm:text-sm"
       >
         Sign up

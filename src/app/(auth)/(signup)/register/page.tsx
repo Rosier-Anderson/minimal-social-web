@@ -25,11 +25,7 @@ const SignInLink = () => {
   return (
     <div className="flex items-center justify-center text-base sm:text-sm mt-8 sm:mt-10">
       <p className="">Already have an account? &nbsp;</p>
-      <Link
-        // remenber to change it in production or localS
-        href="https://djj6yj-3000.csb.app/login"
-        className="underline"
-      >
+      <Link href="/login" className="underline">
         Sign in
       </Link>
     </div>

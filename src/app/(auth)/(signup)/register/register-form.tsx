@@ -89,12 +89,12 @@ function RegisterForm() {
         )}
       </div>
 
-      <RegisterButton />
+      <SubmitButton />
     </form>
   );
 }
 
-const RegisterButton = () => {
+const SubmitButton = () => {
   return (
     <button
       type="submit"

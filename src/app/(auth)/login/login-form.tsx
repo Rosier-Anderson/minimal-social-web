@@ -6,6 +6,7 @@ import { useActionState } from "react";
 
 function LoginForm() {
   const [state, formAction, isPending] = useActionState(login, undefined);
+
   return (
     <form
       action={formAction}
@@ -28,13 +29,14 @@ function LoginForm() {
           </p>
         )}
       </div>
+      {state?.error && <p className="text-xs text-red-500 ">{state?.error}</p>}
       <div className="">
         <div className="flex justify-between ">
           {" "}
           <label htmlFor="password">Password</label>
           <Link
             // remenber to change the href on local or production
-            href="https://djj6yj-3000.csb.app/password/forgot"
+            href="/password/forgot"
             className=" flex items-center underline text-sm max-sm:text-sm"
           >
             Forgot password?
@@ -55,12 +57,12 @@ function LoginForm() {
           </p>
         )}
       </div>
-      <LoginButton />
+      <SubmitButton />
     </form>
   );
 }
 
-const LoginButton = () => {
+const SubmitButton = () => {
   return (
     <button
       type="submit"
