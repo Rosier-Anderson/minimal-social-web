@@ -8,6 +8,9 @@ dependencies:
   clsx:
     specifier: ^2.1.1
     version: 2.1.1
+  jose:
+    specifier: ^6.1.2
+    version: 6.1.2
   next:
     specifier: 16.0.1
     version: 16.0.1(@babel/core@7.28.5)(react-dom@19.2.0)(react@19.2.0)
@@ -17,6 +20,9 @@ dependencies:
   react-dom:
     specifier: 19.2.0
     version: 19.2.0(react@19.2.0)
+  zod:
+    specifier: ^4.1.12
+    version: 4.1.12
 
 devDependencies:
   '@tailwindcss/postcss':
@@ -2506,6 +2512,10 @@ packages:
     hasBin: true
     dev: true
 
+  /jose@6.1.2:
+    resolution: {integrity: sha512-MpcPtHLE5EmztuFIqB0vzHAWJPpmN1E6L4oo+kze56LIs3MyXIj9ZHMDxqOvkP38gBR7K1v3jqd4WU2+nrfONQ==}
+    dev: false
+
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
@@ -3634,4 +3644,3 @@ packages:
 
   /zod@4.1.12:
     resolution: {integrity: sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ==}
-    dev: true

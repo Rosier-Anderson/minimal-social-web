@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
-import { poppins } from "@/fonts";
-
+import { poppins } from "../ui/fonts/fonts";
 export const metadata: Metadata = {
   title: "Minimal-social",
   description: "A mini social app inspired by Instagram",
+
+  icons: [
+    {
+      url: "/logo-light.png",
+      href: "/public/logo-light.png",
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -14,7 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} antialiased`}>{children}</body>
+      <body
+        //  // ${poppins.className}
+        className={` antialiased`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
