@@ -1,20 +1,16 @@
 "use client";
+import { useRegisterForm } from "@/src/hooks/useRegisterForm";
 import register from "@/src/lib/actions/register";
 import React, { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 
 function RegisterForm() {
   const [state, registerAction, isPending] = useActionState(
     register,
     undefined
   );
-  // const { formState, showError, handleChange, validate, resetForm } =
-  //   useRegisterForm();
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   if (!validate()) return;
+  const { formState, handleChange, resetForm } = useRegisterForm();
 
-  //   console.log(formState);
-  // };
   return (
     <form
       action={registerAction}
@@ -26,6 +22,8 @@ function RegisterForm() {
         <label htmlFor="name">User name</label>
         <input
           name="name"
+          value={formState.name}
+          onChange={(e) => handleChange("name", e.target.value)}
           id="name"
           type="name"
           placeholder="John Doe"
@@ -44,6 +42,8 @@ function RegisterForm() {
         <label htmlFor="email">Email</label>
         <input
           name="email"
+          value={formState.email}
+          onChange={(e) => handleChange("email", e.target.value)}
           id="email"
           type="email"
           placeholder="m@exemple.com"
@@ -60,6 +60,8 @@ function RegisterForm() {
         <label htmlFor="password">Password</label>
         <input
           name="password"
+          value={formState.password}
+          onChange={(e) => handleChange("password", e.target.value)}
           id="password"
           type="password"
           placeholder=""
@@ -68,7 +70,7 @@ function RegisterForm() {
         />
         {state?.errors && (
           <p className="text-xs text-red-500 ">
-            {state.errors.properties?.password?.errors.toString()}
+            {state.errors.properties?.password?.errors[0]}
           </p>
         )}
       </div>
@@ -76,6 +78,8 @@ function RegisterForm() {
         <label htmlFor="confirmPassword">Confirm Password</label>
         <input
           name="confirmPassword"
+          value={formState.confirmPassword}
+          onChange={(e) => handleChange("confirmPassword", e.target.value)}
           id="confirmPassword"
           type="password"
           placeholder=""
@@ -94,15 +98,16 @@ function RegisterForm() {
   );
 }
 
-const SubmitButton = () => {
+function SubmitButton() {
+  const status = useFormStatus();
   return (
     <button
       type="submit"
       className="bg-black text-white w-full text-base rounded-lg h-11 sm:h-12 cursor-pointer"
     >
-      Create an account
+      {status.pending ? "Creating..." : "Create an account"}
     </button>
   );
-};
+}
 
 export default RegisterForm;
