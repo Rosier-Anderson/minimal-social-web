@@ -2,8 +2,13 @@ import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { decrypt } from "./lib/actions/session";
 
-const publicRoutes = ["login", "register", "forgot-password", "reset-password"];
-const protectedRoutes = ["/", "notifications"];
+const publicRoutes = [
+  "/login",
+  "/register",
+  "/forgot-password",
+  "/reset-password",
+];
+const protectedRoutes = ["/", "/notifications"];
 
 export default async function proxy(req: NextRequest) {
   const currentPath = req.nextUrl.pathname;
