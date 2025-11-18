@@ -45,6 +45,54 @@ export const HomeIcon = ({ className = "", size = 24, isFilled = false }) => {
     </>
   );
 };
+export const PlusIcon = ({ className = "", size = 24, isFilled = false }) => {
+  return (
+    <>
+      {isFilled ? (
+        <svg
+          aria-label="Plus"
+          role="img"
+          viewBox="0 0 26 26"
+          className={className}
+          style={{
+            height: size,
+            width: size,
+            fill: "currentColor",
+            stroke: "currentColor",
+          }}
+        >
+          <title>Plus</title>
+          <path
+            d="M13 4.25V21.75M4.25 13H21.75"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+        </svg>
+      ) : (
+        <svg
+          aria-label="Plus"
+          role="img"
+          viewBox="0 0 26 26"
+          className={className}
+          style={{
+            height: size,
+            width: size,
+          }}
+        >
+          <title>Plus</title>
+          <path
+            d="M13 4.25V21.75M4.25 13H21.75"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            fill="none"
+          />
+        </svg>
+      )}
+    </>
+  );
+};
 
 export const BirthdayHatIcon = ({
   className = "",
