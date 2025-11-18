@@ -1,15 +1,20 @@
 "use server";
-import z, { email } from "zod";
 
+import z, { email } from "zod";
+import createSession from "./session";
+import { redirect } from "next/navigation";
+const testUser = {
+  id: "1",
+  email: "m@exemple.com",
+  password: "12345678",
+};
 const formDataSchema = z
   .object({
-    name: z
-      .string({ message: "Please enter a user name" })
-      .min(2, { message: "user name can not be empty" })
-      .trim(),
+    name: z.string().nonempty({ message: "Please enter a user name" }).trim(),
     email: z.email({ message: "Please enter a valid email address" }).trim(),
     password: z
-      .string({ message: "Please enter password" })
+      .string()
+      .nonempty({ message: "Please enter password" })
       .min(8, { message: "Password must be at least 8 characters" }),
     confirmPassword: z.string({ message: "Please confirm your password" }),
   })
@@ -26,6 +31,7 @@ export default async function register(prevState: unknown, formData: FormData) {
     };
   }
   const { name, email, password } = formDataResult.data;
-
   // ship to the database =------
+  await createSession(testUser.id);
+  redirect("/");
 }

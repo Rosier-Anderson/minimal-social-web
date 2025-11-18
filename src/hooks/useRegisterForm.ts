@@ -1,3 +1,27 @@
+"use client";
+import { useState } from "react";
+interface FormState {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+const initialState: FormState = {
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
+export function useRegisterForm() {
+  const [formState, setFormState] = useState<FormState>(initialState);
+
+  const handleChange = (field: keyof FormState, value: string) => {
+    setFormState((prev) => ({ ...prev, [field]: value }));
+  };
+  const resetForm = () => setFormState(initialState);
+  return { handleChange, formState, resetForm };
+}
+
 // import*****
 // *******
 // *****
