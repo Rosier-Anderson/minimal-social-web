@@ -2,10 +2,15 @@ import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { decrypt } from "./lib/actions/session";
 
-const publicRoutes = ["login", "register", "forgot-password", "reset-password"];
-const protectedRoutes = ["/", "notifications"];
+const publicRoutes = [
+  "/login",
+  "/register",
+  "/forgot-password",
+  "/reset-password",
+];
+const protectedRoutes = ["/", "/notifications"];
 
-export default async function middleware(req: NextRequest) {
+export default async function proxy(req: NextRequest) {
   const currentPath = req.nextUrl.pathname;
   const isProtectedRoutes: boolean = protectedRoutes.includes(currentPath);
   const isPublicRoutes: boolean = publicRoutes.includes(currentPath);
@@ -19,3 +24,7 @@ export default async function middleware(req: NextRequest) {
   }
   return NextResponse.next();
 }
+export const config = {
+  matcher:
+    "/((?!api|_next/data|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+};

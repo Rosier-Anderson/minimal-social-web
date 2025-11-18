@@ -1,5 +1,5 @@
 "use server";
-import z, { email } from "zod";
+import z from "zod";
 import createSession from "./session";
 import { redirect } from "next/navigation";
 // test user
@@ -11,7 +11,8 @@ const testUser = {
 const formDataSchema = z.object({
   email: z.email({ message: "Please enter email" }).trim(),
   password: z
-    .string({ message: "Please enter password" })
+    .string()
+    .nonempty({ message: "Please enter password" })
     .min(8, { message: "Password should be at least 8 characters" }),
 });
 export default async function login(prevState: unknown, formData: FormData) {
@@ -37,6 +38,7 @@ export default async function login(prevState: unknown, formData: FormData) {
       // },
     };
   }
+
   await createSession(testUser.id);
   redirect("/");
 }

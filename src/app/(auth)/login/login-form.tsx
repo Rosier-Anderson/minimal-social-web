@@ -1,11 +1,14 @@
 "use client";
 
+import { useLoginForm } from "@/src/hooks/useLoginForm";
 import login from "@/src/lib/actions/login";
 import Link from "next/link";
-import { useActionState } from "react";
+import React, { use, useActionState } from "react";
+import { useFormStatus } from "react-dom";
 
 function LoginForm() {
-  const [state, formAction, isPending] = useActionState(login, undefined);
+  const [state, formAction] = useActionState(login, undefined);
+  const { handleChange, formState } = useLoginForm();
 
   return (
     <form
@@ -18,6 +21,8 @@ function LoginForm() {
         <label htmlFor="email">Email</label>
         <input
           name="email"
+          value={formState.email}
+          onChange={(e) => handleChange("email", e.target.value)}
           id="email"
           type="email"
           placeholder="m@exemple.com"
@@ -45,6 +50,10 @@ function LoginForm() {
 
         <input
           name="password"
+          value={formState.password}
+          onChange={(e) => {
+            handleChange("password", e.target.value);
+          }}
           id="password"
           type="password"
           placeholder=""
@@ -53,7 +62,7 @@ function LoginForm() {
         />
         {state?.errors && (
           <p className="text-xs text-red-500 ">
-            {state.errors.properties?.password?.errors.toString()}
+            {state.errors.properties?.password?.errors[0]}
           </p>
         )}
       </div>
@@ -62,15 +71,17 @@ function LoginForm() {
   );
 }
 
-const SubmitButton = () => {
+function SubmitButton() {
+  const status = useFormStatus();
   return (
     <button
+      disabled={status.pending}
       type="submit"
       className="bg-black text-white w-full text-base rounded-lg h-11 sm:h-12 cursor-pointer"
     >
-      Login
+      {status.pending ? "Login in..." : "Login"}
     </button>
   );
-};
+}
 
 export default LoginForm;
