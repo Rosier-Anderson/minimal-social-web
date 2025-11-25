@@ -14,7 +14,6 @@ function RegisterForm() {
   return (
     <form
       action={registerAction}
-      method="POST"
       name="registerForm"
       className=" flex flex-col gap-4 text-base "
     >

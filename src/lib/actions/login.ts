@@ -15,11 +15,11 @@ const formDataSchema = z.object({
     .nonempty({ message: "Please enter password" })
     .min(8, { message: "Password should be at least 8 characters" }),
 });
-export default async function login(prevState: unknown, formData: FormData) {
+export default async function login(prevState: any, formData: FormData) {
   const formDataResult = formDataSchema.safeParse(Object.fromEntries(formData));
   if (!formDataResult.success) {
     return {
-      errors: z.treeifyError(formDataResult.error),
+      errors: z.flattenError(formDataResult.error),
     };
   }
   const { email, password } = formDataResult.data;

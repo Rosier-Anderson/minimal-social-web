@@ -12,9 +12,8 @@ function LoginForm() {
 
   return (
     <form
+      name="LoginForm"
       action={formAction}
-      method="POST"
-      name="loginForm"
       className=" flex flex-col gap-5 text-base "
     >
       <div className="flex flex-col gap-2">
@@ -30,7 +29,7 @@ function LoginForm() {
         />
         {state?.errors && (
           <p className="text-xs text-red-500 ">
-            {state.errors.properties?.email?.errors.toString()}
+            {state.errors.fieldErrors.email?.toString()}
           </p>
         )}
       </div>
@@ -62,7 +61,7 @@ function LoginForm() {
         />
         {state?.errors && (
           <p className="text-xs text-red-500 ">
-            {state.errors.properties?.password?.errors[0]}
+            {state.errors.fieldErrors.password}
           </p>
         )}
       </div>
