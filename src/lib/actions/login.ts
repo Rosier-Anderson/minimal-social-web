@@ -11,13 +11,14 @@ const testUser = {
 const formDataSchema = z.object({
   email: z.email({ message: "Please enter email" }).trim(),
   password: z
-    .string()
-    .nonempty({ message: "Please enter password" })
+    .string({ message: "Please enter password" })
     .min(8, { message: "Password should be at least 8 characters" }),
 });
-export default async function login(prevState: any, formData: FormData) {
-  const formDataResult = formDataSchema.safeParse(Object.fromEntries(formData));
+export default async function login(prevState: unknown, formData: FormData) {
+ const rawData = Object.fromEntries(formData)
+  const formDataResult = formDataSchema.safeParse(rawData);
   if (!formDataResult.success) {
+    console.log(z.flattenError(formDataResult.error))
     return {
       errors: z.flattenError(formDataResult.error),
     };
@@ -28,7 +29,7 @@ export default async function login(prevState: any, formData: FormData) {
   if (email !== testUser.email || password !== testUser.password) {
     return {
       error: "Invalid email or password",
-      // change this later by safeParse testUser and formDataResult by ommitting the id with typescript
+      //  safeParse testUser and formDataResult by ommitting the id with typescript
       // errors: {
       //   properties: {
       //     email: {

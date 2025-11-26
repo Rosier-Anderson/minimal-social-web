@@ -22,6 +22,7 @@ function RegisterForm() {
         <input
           name="name"
           value={formState.name}
+          required
           onChange={(e) => handleChange("name", e.target.value)}
           id="name"
           type="name"
@@ -42,6 +43,7 @@ function RegisterForm() {
         <input
           name="email"
           value={formState.email}
+          required
           onChange={(e) => handleChange("email", e.target.value)}
           id="email"
           type="email"
@@ -60,6 +62,7 @@ function RegisterForm() {
         <input
           name="password"
           value={formState.password}
+          required
           onChange={(e) => handleChange("password", e.target.value)}
           id="password"
           type="password"
@@ -78,6 +81,7 @@ function RegisterForm() {
         <input
           name="confirmPassword"
           value={formState.confirmPassword}
+          required
           onChange={(e) => handleChange("confirmPassword", e.target.value)}
           id="confirmPassword"
           type="password"
