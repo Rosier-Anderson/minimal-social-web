@@ -7,10 +7,10 @@ const secretKey = process.env.SESSION_SECRET;
 const encodedKey = new TextEncoder().encode(secretKey);
 type SessionPayload = {
   userId: string;
-  expiresAt: Date;
+  expiresAt: number;
 };
 export default async function createSession(userId: string) {
-  const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+  const expiresAt = Date.now() + 7 * 24 * 60 * 60 * 1000;
   const session = await encrypt({ userId, expiresAt });
   (await cookies()).set("session", session, {
     httpOnly: true,

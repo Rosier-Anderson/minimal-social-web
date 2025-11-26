@@ -10,11 +10,10 @@ const testUser = {
 };
 const formDataSchema = z
   .object({
-    name: z.string().nonempty({ message: "Please enter a user name" }).trim(),
+    name: z.string({ message: "Please enter a user name" }).trim(),
     email: z.email({ message: "Please enter a valid email address" }).trim(),
     password: z
-      .string()
-      .nonempty({ message: "Please enter password" })
+      .string({ message: "Please enter password" })
       .min(8, { message: "Password must be at least 8 characters" }),
     confirmPassword: z.string({ message: "Please confirm your password" }),
   })
@@ -23,14 +22,16 @@ const formDataSchema = z
     path: ["confirmPassword"], // path of error
   });
 export default async function register(prevState: unknown, formData: FormData) {
-  const formDataResult = formDataSchema.safeParse(Object.fromEntries(formData));
+  const validatedFields = formDataSchema.safeParse(
+    Object.fromEntries(formData)
+  );
 
-  if (!formDataResult.success) {
+  if (!validatedFields.success) {
     return {
-      errors: z.treeifyError(formDataResult.error),
+      errors: z.treeifyError(validatedFields.error),
     };
   }
-  const { name, email, password } = formDataResult.data;
+  const { name, email, password } = validatedFields.data;
   // ship to the database =------
   await createSession(testUser.id);
   redirect("/");
