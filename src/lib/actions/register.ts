@@ -22,14 +22,16 @@ const formDataSchema = z
     path: ["confirmPassword"], // path of error
   });
 export default async function register(prevState: unknown, formData: FormData) {
-  const formDataResult = formDataSchema.safeParse(Object.fromEntries(formData));
+  const validatedFields = formDataSchema.safeParse(
+    Object.fromEntries(formData)
+  );
 
-  if (!formDataResult.success) {
+  if (!validatedFields.success) {
     return {
-      errors: z.treeifyError(formDataResult.error),
+      errors: z.treeifyError(validatedFields.error),
     };
   }
-  const { name, email, password } = formDataResult.data;
+  const { name, email, password } = validatedFields.data;
   // ship to the database =------
   await createSession(testUser.id);
   redirect("/");

@@ -16,6 +16,7 @@ export default async function proxy(req: NextRequest) {
   const isPublicRoutes: boolean = publicRoutes.includes(currentPath);
   const cookie = (await cookies()).get("session")?.value;
   const session = await decrypt(cookie);
+  console.log(session, "session");
   if (isProtectedRoutes && !session?.userId) {
     return NextResponse.redirect(new URL("/login", req.nextUrl));
   }
@@ -24,7 +25,3 @@ export default async function proxy(req: NextRequest) {
   }
   return NextResponse.next();
 }
-export const config = {
-  matcher:
-    "/((?!api|_next/data|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
-};

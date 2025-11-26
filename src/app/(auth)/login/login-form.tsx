@@ -3,13 +3,11 @@ import { useLoginForm } from "@/src/hooks/useLoginForm";
 import login from "@/src/lib/actions/login";
 
 import Link from "next/link";
-import React, {  useActionState } from "react";
+import React, { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
 function LoginForm() {
-  const [state, formAction] = useActionState( async (prevState: unknown, formData: FormData) => {
-    return await login(formData); // login still takes only formData
-  },null);
+  const [state, formAction] = useActionState(login, undefined);
   const { handleChange, formState } = useLoginForm();
 
   return (
@@ -30,13 +28,12 @@ function LoginForm() {
           placeholder="m@exemple.com"
           className="p-3 w-full text-base rounded-lg h-11 sm:h-12 bg-gray-100 outline-neutral-950"
         />
+        {state?.errors && <p>{state.errors.properties?.email?.errors}</p>}
         {state?.errors && (
-          <p className="text-xs text-red-500 ">
-            {state.errors.fieldErrors.email?.toString()}
-          </p>
+          <p className="text-xs text-red-500 ">{state.errors.errors}</p>
         )}
       </div>
-      {state?.error && <p className="text-xs text-red-500 ">{state?.error}</p>}
+      {/* {state?.error && <p className="text-xs text-red-500 ">{state?.error}</p>} */}
       <div className="">
         <div className="flex justify-between ">
           {" "}
@@ -54,18 +51,15 @@ function LoginForm() {
           name="password"
           value={formState.password}
           required
-          onChange={(e) => {
-            handleChange("password", e.target.value);
-          }}
+          onChange={(e) => handleChange("password", e.target.value)}
           id="password"
           type="password"
-    
           // Etra margin-top => mt2 for better allignment
           className=" p-3 w-full text-base rounded-lg h-11 sm:h-12 bg-gray-100 outline-neutral-950 mt-2"
         />
         {state?.errors && (
           <p className="text-xs text-red-500 ">
-            {state.errors.fieldErrors.password}
+            {state.errors.properties?.password?.errors}
           </p>
         )}
       </div>
