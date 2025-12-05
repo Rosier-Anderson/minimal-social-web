@@ -1,57 +1,45 @@
 "use client";
-
-import {
-  ConversationIcon,
-  HeartIcon,
-  HomeIcon,
-  PlusIcon,
-  SearchIcon,
-} from "@/src/assets/icons";
 import Image from "next/image";
-import Profile from "../profile/fake-profile";
-import { useDeviceCheck } from "@/src/hooks/useDeviceCheck";
-const sideNavIcons = [
-  {
-    id: 1,
-    name: <HomeIcon />,
-  },
-  { id: 2, name: <ConversationIcon /> },
-  { id: 3, name: <PlusIcon /> },
-  { id: 4, name: <HeartIcon /> },
-];
+import Link from "next/link";
+import { cn } from "@/utils";
+import { sideNavTabs } from "@/src/constants";
+
 const Sidebar = () => {
-  const isMobile = useDeviceCheck();
   return (
     <div className="bg-black ">
-      <div className="flex justify-center sm:justify-between pl-1.5 sm:pl-auto p-2">
-        {isMobile ? null : <Logo />}
-
-        <nav className=" text-white my-auto w-sm ">
-          <ul className="flex items-center justify-between ">
-            {sideNavIcons.map((icon) => (
-              <li className="cursor-pointer" key={icon.id}>
-                {icon.name}
-              </li>
-            ))}{" "}
-            {isMobile ? <div></div> : null}
-          </ul>
+      <div className="flex justify-center sm:justify-between pl-1.5 sm:pl-auto p-2 bg-amber-200">
+        <nav className=" flex items-center justify-between text-white my-auto w-sm ">
+          <Logo className="hidden md:block" />
+          {sideNavTabs.map((tab) => {
+            const Icon = tab.icon
+            return (
+              <Link
+                href={tab.href}
+                className="flex items-center justify-center cursor-pointer"
+                key={tab.id}
+              >
+               <Icon/>
+              </Link>
+            );
+          })}{" "}
         </nav>
-
-        <Profile />
       </div>
     </div>
   );
 };
-
-const Logo = () => {
+type LogoProps = React.ImgHTMLAttributes<HTMLImageElement>;
+const Logo = ({ className }: LogoProps) => {
   return (
     <figure className="relative w-10 h-10">
+      <Link href="/">
       <Image
-        className="rounded "
+        className={cn("rounded", className)}
         src="/images/logo-dark.png"
         alt="App logo"
         fill
       />
+      </Link>
+      
     </figure>
   );
 };

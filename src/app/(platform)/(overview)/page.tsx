@@ -1,11 +1,7 @@
-import Sidebar from "../_components/Sidebar";
-
-export default function Home() {
+export default function Page() {
   return (
     <div className="">
-      <main className="block ">
-        <Sidebar />
-      </main>
+      <main className="size-screen ">main</main>
     </div>
   );
 }
