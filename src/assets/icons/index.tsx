@@ -432,3 +432,62 @@ export const GoogleIcon = ({ className = "", size = 24 }) => {
     </svg>
   );
 };
+export const ProfileIcon = ({ className = "", size = 24, isFilled = false }) => {
+  return (
+    <>
+      {isFilled ? (
+        // FILLED PROFILE ICON
+        <svg
+          className={className}
+          aria-label="Profile"
+          role="img"
+          viewBox="0 0 26 26"
+          style={{
+            height: size,
+            width: size,
+            fill: "currentColor",
+            stroke: "currentColor",
+          }}
+        >
+          <title>Profile</title>
+          <path
+            d="M13 2.75C9.54822 2.75 6.75 5.54822 6.75 9C6.75 12.4518 9.54822 15.25 13 15.25C16.4518 15.25 19.25 12.4518 19.25 9C19.25 5.54822 16.4518 2.75 13 2.75Z"
+          />
+          <path
+            d="M4 22.75C4 18.6079 7.35786 15.25 11.5 15.25H14.5C18.6421 15.25 22 18.6079 22 22.75"
+            strokeWidth="2"
+            strokeLinecap="round"
+            fill="none"
+          />
+        </svg>
+      ) : (
+        // OUTLINED PROFILE ICON
+        <svg
+          className={className}
+          aria-label="Profile"
+          role="img"
+          viewBox="0 0 26 26"
+          style={{
+            height: size,
+            width: size,
+          }}
+        >
+          <title>Profile</title>
+          <path
+            d="M13 2.75C9.54822 2.75 6.75 5.54822 6.75 9C6.75 12.4518 9.54822 15.25 13 15.25C16.4518 15.25 19.25 12.4518 19.25 9C19.25 5.54822 16.4518 2.75 13 2.75Z"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.3"
+          />
+          <path
+            d="M4 22.75C4 18.6079 7.35786 15.25 11.5 15.25H14.5C18.6421 15.25 22 18.6079 22 22.75"
+            stroke="currentColor"
+            strokeWidth="2.3"
+            strokeLinecap="round"
+            fill="none"
+          />
+        </svg>
+      )}
+    </>
+  );
+};
