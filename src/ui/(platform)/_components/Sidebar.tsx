@@ -9,15 +9,16 @@ const Sidebar = ({ className }: SidebarProps) => {
   return (
     <div
       className={cn(
-        "flex items-center justify-center h-12 sm:h-full bg-black",
+        "flex  justify-center bg-black  sm:py-16",
         className
       )}
     >
-      <nav className=" flex items-center justify-between sm:flex-col text-white p-1 sm:min-h-96">
+      <nav className=" flex items-center justify-between  sm:flex-col text-white p-1 w-sm h-full ">
         <div className="hidden md:block">
           <Logo  />
         </div>
-        {sideNavTabs.map((tab) => {
+        <div className="flex sm:flex-col justify-between items-center w-sm sm:w-full sm:h-[350px] ">
+            {sideNavTabs.map((tab) => {
           const Icon = tab.icon;
           return (
             <Link
@@ -33,7 +34,10 @@ const Sidebar = ({ className }: SidebarProps) => {
               <Icon />
             </Link>
           );
-        })}{" "}
+        })}
+        <div className="sm:hidden"></div>
+        </div>
+      
         <div className="">
           <Profile />
         </div>
