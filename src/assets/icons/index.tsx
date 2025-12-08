@@ -45,6 +45,54 @@ export const HomeIcon = ({ className = "", size = 24, isFilled = false }) => {
     </>
   );
 };
+export const PlusIcon = ({ className = "", size = 24, isFilled = false }) => {
+  return (
+    <>
+      {isFilled ? (
+        <svg
+          aria-label="Plus"
+          role="img"
+          viewBox="0 0 26 26"
+          className={className}
+          style={{
+            height: size,
+            width: size,
+            fill: "currentColor",
+            stroke: "currentColor",
+          }}
+        >
+          <title>Plus</title>
+          <path
+            d="M13 4.25V21.75M4.25 13H21.75"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+        </svg>
+      ) : (
+        <svg
+          aria-label="Plus"
+          role="img"
+          viewBox="0 0 26 26"
+          className={className}
+          style={{
+            height: size,
+            width: size,
+          }}
+        >
+          <title>Plus</title>
+          <path
+            d="M13 4.25V21.75M4.25 13H21.75"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            fill="none"
+          />
+        </svg>
+      )}
+    </>
+  );
+};
 
 export const BirthdayHatIcon = ({
   className = "",
@@ -382,5 +430,64 @@ export const GoogleIcon = ({ className = "", size = 24 }) => {
         d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
       ></path>
     </svg>
+  );
+};
+export const ProfileIcon = ({ className = "", size = 24, isFilled = false }) => {
+  return (
+    <>
+      {isFilled ? (
+        // FILLED PROFILE ICON
+        <svg
+          className={className}
+          aria-label="Profile"
+          role="img"
+          viewBox="0 0 26 26"
+          style={{
+            height: size,
+            width: size,
+            fill: "currentColor",
+            stroke: "currentColor",
+          }}
+        >
+          <title>Profile</title>
+          <path
+            d="M13 2.75C9.54822 2.75 6.75 5.54822 6.75 9C6.75 12.4518 9.54822 15.25 13 15.25C16.4518 15.25 19.25 12.4518 19.25 9C19.25 5.54822 16.4518 2.75 13 2.75Z"
+          />
+          <path
+            d="M4 22.75C4 18.6079 7.35786 15.25 11.5 15.25H14.5C18.6421 15.25 22 18.6079 22 22.75"
+            strokeWidth="2"
+            strokeLinecap="round"
+            fill="none"
+          />
+        </svg>
+      ) : (
+        // OUTLINED PROFILE ICON
+        <svg
+          className={className}
+          aria-label="Profile"
+          role="img"
+          viewBox="0 0 26 26"
+          style={{
+            height: size,
+            width: size,
+          }}
+        >
+          <title>Profile</title>
+          <path
+            d="M13 2.75C9.54822 2.75 6.75 5.54822 6.75 9C6.75 12.4518 9.54822 15.25 13 15.25C16.4518 15.25 19.25 12.4518 19.25 9C19.25 5.54822 16.4518 2.75 13 2.75Z"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.3"
+          />
+          <path
+            d="M4 22.75C4 18.6079 7.35786 15.25 11.5 15.25H14.5C18.6421 15.25 22 18.6079 22 22.75"
+            stroke="currentColor"
+            strokeWidth="2.3"
+            strokeLinecap="round"
+            fill="none"
+          />
+        </svg>
+      )}
+    </>
   );
 };

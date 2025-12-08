@@ -21,10 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en"  suppressHydrationWarning > 
       <body
-      
         //  // ${poppins.className}
         className={`${poppins.className} antialiased`}
       >
+       
         {children}
       </body>
     </html>
