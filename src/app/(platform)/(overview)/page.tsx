@@ -1,7 +1,3 @@
 export default function Page() {
-  return (
-    <div className="">
-      <main className="size-screen ">main</main>
-    </div>
-  );
+  return <main className="text-center ">main</main>;
 }

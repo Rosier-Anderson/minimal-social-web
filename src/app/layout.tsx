@@ -19,11 +19,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         //  // ${poppins.className}
         className={`${poppins.className} antialiased`}
       >
+       
         {children}
       </body>
     </html>

@@ -19,7 +19,7 @@ export const sideNavTabs = [
     href: "/conversation",
     icon: ConversationIcon,
   },
-  { id: 3, name: "Plus", href: "/create", icon: PlusIcon },
+  { id: 3, name: "Plus", href: "/search", icon: PlusIcon },
   { id: 4, name: "Like", href: "/like", icon: HeartIcon },
   { id: 5, name: "Profile", href: "/profile", icon: ProfileIcon },
 ] as const;

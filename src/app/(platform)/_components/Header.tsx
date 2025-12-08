@@ -1,9 +1,11 @@
+import { cn } from "@/utils";
 import NavLinks from "./nav-links";
-export default function Header() {
+type HeaderProps = React.HTMLAttributes<HTMLElement>;
+export default function Header({ className }: HeaderProps) {
   return (
-    <div className="">
-      <header className="text-sm font-bold">
-      <NavLinks/>
+    <div className={cn("", className)}>
+      <header className="text-sm sm:text-md font-bold ">
+        <NavLinks />
       </header>
     </div>
   );
