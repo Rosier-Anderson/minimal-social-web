@@ -6,7 +6,7 @@ import {
   ProfileIcon,
 } from "../assets/icons";
 export const linksTab = [
-  { id: 1, name: "Feed", href: "/feed" },
+  { id: 1, name: "Feed", href: "/" },
   { id: 2, name: "Following", href: "/following" },
   { id: 3, name: "Like", href: "/like" },
 ] as const;
