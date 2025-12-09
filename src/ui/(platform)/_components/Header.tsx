@@ -1,5 +1,7 @@
-import { cn } from "@/utils";
+
+import { cn } from "@/src/utils";
 import NavLinks from "./nav-links";
+
 type HeaderProps = React.HTMLAttributes<HTMLElement>;
 export default function Header({ className }: HeaderProps) {
   return (
