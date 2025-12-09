@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/utils";
+import { cn } from "@/src/utils";
 import { sideNavTabs } from "@/src/constants";
 type SidebarProps = React.HTMLAttributes<HTMLElement>;
 const Sidebar = ({ className }: SidebarProps) => {

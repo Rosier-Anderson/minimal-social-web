@@ -1,6 +1,6 @@
 "use client";
 import { linksTab } from "@/src/constants";
-import { cn } from "@/utils";
+import { cn } from "@/src/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 export default function NavLinks() {
