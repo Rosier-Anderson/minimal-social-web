@@ -12,7 +12,7 @@ export default function Page() {
           <section className="">
             {data.map((thread) => {
               return (
-                <article className="bg-amber-50 ">
+                <article key={thread.id} className="bg-amber-50 ">
                   <div className="flex items-center justify-between ">
                     <div className="flex items-center gap-4">
                       <figure className="rounded-full overflow-hidden bg-red-200">

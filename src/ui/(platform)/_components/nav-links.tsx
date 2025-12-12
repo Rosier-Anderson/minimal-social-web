@@ -9,8 +9,7 @@ export default function NavLinks() {
     <nav className=" flex items-center justify-center gap-4 bg-gray-200 rounded-lg w-xs mx-auto h-12 p-2 ">
       {linksTab.map((link) => {
         const isActive =
-          pathname.includes(link.name.toLocaleLowerCase()) ||
-          (pathname === "/" && link.href == "/");
+          pathname.includes(link.name.toLocaleLowerCase()) 
 
         return (
           <Link

@@ -7,45 +7,42 @@ type SidebarProps = React.HTMLAttributes<HTMLElement>;
 const Sidebar = ({ className }: SidebarProps) => {
   const lastTab = 5;
   return (
-    <div
-      className={cn(
-        "flex  justify-center bg-black  sm:py-16",
-        className
-      )}
-    >
-      <nav className=" flex items-center justify-between  sm:flex-col text-white p-1 w-sm h-full ">
-        <div className="hidden md:block">
-          <Logo  />
-        </div>
-        <div className="flex sm:flex-col justify-between items-center w-sm sm:w-full sm:h-[350px] ">
+    <div className={cn("flex  justify-center bg-black  sm:py-16", className)}>
+      {" "}
+      <aside>
+        <nav className=" flex items-center justify-between  sm:flex-col text-white p-1 w-sm h-full ">
+          <div className="hidden md:block">
+            <Logo />
+          </div>
+          <div className="flex sm:flex-col justify-between items-center w-sm sm:w-full sm:h-[350px] ">
             {sideNavTabs.map((tab) => {
-          const Icon = tab.icon;
-          return (
-            <Link
-              href={tab.href}
-              className={cn(
-                "flex items-center  justify-center cursor-pointer",
-                {
-                  hidden: tab.id == lastTab,
-                }
-              )}
-              key={tab.id}
-            >
-              <Icon />
-            </Link>
-          );
-        })}
-        <div className="sm:hidden"></div>
-        </div>
-      
-        <div className="">
-          <Profile />
-        </div>
-      </nav>
+              const Icon = tab.icon;
+              return (
+                <Link
+                  href={tab.href}
+                  className={cn(
+                    "flex items-center  justify-center cursor-pointer",
+                    {
+                      hidden: tab.id == lastTab,
+                    }
+                  )}
+                  key={tab.id}
+                >
+                  <Icon />
+                </Link>
+              );
+            })}
+            <div className="sm:hidden"></div>
+          </div>
+
+          <div className="">
+            <Profile />
+          </div>
+        </nav>
+      </aside>
     </div>
   );
 };
-
 
 const Logo = () => {
   return (

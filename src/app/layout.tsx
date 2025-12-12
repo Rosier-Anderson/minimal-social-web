@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
-import { poppins } from "../ui/fonts/fonts";
+import { poppins } from "../ui/fonts";
+
 export const metadata: Metadata = {
   title: "Minimal-social",
   description: "A mini social app inspired by Instagram",
@@ -24,7 +25,7 @@ export default function RootLayout({
         //  // ${poppins.className}
         className={`${poppins.className} antialiased`}
       >
-       
+    
         {children}
       </body>
     </html>
