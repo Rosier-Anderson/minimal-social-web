@@ -6,7 +6,7 @@ export default function ProfileLinks() {
     <div className=" flex justify-between gap-2 border-b border-gray-400">
       {linksProfileTabs.map((link) => {
         return (
-          <Link className=" gap-2" href={link.href}>
+          <Link key={link.id} className=" gap-2" href={link.href}>
             {link.name}
           </Link>
         );

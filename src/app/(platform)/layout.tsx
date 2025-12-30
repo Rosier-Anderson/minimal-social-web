@@ -1,7 +1,11 @@
 import Header from "../../ui/(platform)/_components/Header";
 import Sidebar from "../../ui/(platform)/_components/Sidebar";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function PlatformLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div
       className="size-screen

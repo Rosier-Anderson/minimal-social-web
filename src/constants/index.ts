@@ -26,6 +26,6 @@ export const sideNavTabs = [
 
 export const linksProfileTabs = [
   { id: 1, name: "Post", href: "/profile/posts" },
-  { id: 2, name: "Liked post", href: "/liked-post" },
-  { id: 3, name: "Repost", href: "/reposts" },
+  { id: 2, name: "Liked post", href: "/profile/likedpost" },
+  { id: 3, name: "Repost", href: "/profile/repost" },
 ] as const;
