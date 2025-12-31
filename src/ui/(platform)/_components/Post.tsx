@@ -5,28 +5,49 @@ import { FaRegComment, FaRegHeart } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
 
 export default function Post({ props }) {
-  const { id, avatar, username, time, content } = props;
+  const { id, avatar, username, time, content, image} = props;
   return (
     <>
-      <article key={id} className="  border-b border-gray-300 w-full  min-h-20">
-        <div className="flex w-sm sm:w-xl mx-auto">
+      <article className="border-b border-gray-300 w-full mt-2  ">
+        <div className="flex w-sm sm:w-xl h-[200px] mx-auto ">
           <PostProfile avatar={avatar} />
 
-          <div className="flex flex-col items-start justify-between w-full ">
+          <div className="flex flex-col items-start   w-full ">
             <PostInfo username={username} time={time} />
 
-            <div className="">
-              <p className="">{content}</p>
+   
+              <PostContent image={image} content={content} />
+      
+            <div className="mt-auto">
+              <PostStats />
             </div>
-
-            <PostStats />
           </div>
         </div>
       </article>
     </>
   );
 }
-
+const PostContent = ({ image, content }) => {
+  return (
+    <div className="">
+      <div className="">
+        <p className="">{content}</p>
+      </div>
+      <div className="">
+        <figure className="relative w-56 h-28 ">
+           <Image
+          src={image}
+          alt="User picture"
+          loading="lazy"
+          className=""
+        fill
+        />
+        </figure>
+       
+      </div>
+    </div>
+  );
+};
 const PostProfile = ({ avatar }) => {
   return (
     <div className="flex items-start justify-between gap-4 h-full ">

@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
 
   images: {
-    remotePatterns: [{ hostname: "api.dicebear.com" }],
+    remotePatterns: [{ hostname: "api.dicebear.com" }, {hostname: "picsum.photos"}],
     dangerouslyAllowSVG: true,
   },
 };

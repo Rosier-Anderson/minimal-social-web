@@ -2,10 +2,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/src/utils";
-import { sideNavTabs } from "@/src/constants";
+
+import { GoHome, GoPerson, GoPlus } from "react-icons/go";
+import { BsSendPlus } from "react-icons/bs";
+import { FaRegHeart } from "react-icons/fa";
+import { usePathname } from "next/navigation";
+import { LiaSearchSolid } from "react-icons/lia";
+
+
 type SidebarProps = React.HTMLAttributes<HTMLElement>;
 const Sidebar = ({ className }: SidebarProps) => {
-  const lastTab = 5;
+   const pathname = usePathname()
+  const sideNavTabs = [
+    { id: 1, name: "Home", href: "/", icon: GoHome  },
+    {
+      id: 2,
+      name: "Conversation",
+      href: "/conversation",
+      icon: GoPlus,
+    },
+    { id: 3, name: "Plus", href: "/search", icon:   LiaSearchSolid },
+    { id: 4, name: "Like", href: "/like", icon: FaRegHeart  },
+  ];
+
   return (
     <div className={cn("flex  justify-center bg-black  sm:py-16", className)}>
       {" "}
@@ -14,21 +33,22 @@ const Sidebar = ({ className }: SidebarProps) => {
           <div className="hidden md:block">
             <Logo />
           </div>
-          <div className="flex sm:flex-col justify-between items-center w-sm sm:w-full sm:h-[350px] ">
+          <div className="flex sm:flex-col justify-between items-center w-sm sm:w-full gap-10">
             {sideNavTabs.map((tab) => {
-              const Icon = tab.icon;
+              const TabIcon = tab.icon;
+             const isActive = pathname == tab.href;
+          
               return (
                 <Link
+                  key={tab.id}
                   href={tab.href}
                   className={cn(
-                    "flex items-center  justify-center cursor-pointer",
-                    {
-                      hidden: tab.id == lastTab,
-                    }
+                    "flex items-center  justify-center cursor-pointer"
                   )}
-                  key={tab.id}
                 >
-                  <Icon />
+                  <TabIcon className={cn("size-6", {
+                  "text-red-400": isActive 
+                  })}/>
                 </Link>
               );
             })}
@@ -61,11 +81,13 @@ const Logo = () => {
     </>
   );
 };
-const Profile = () => {
-  const Icon = sideNavTabs[4].icon;
+const Profile = ({user}) => {
   return (
-    <Link href="/profile">
-      <Icon className="" />
+    <Link href="/profile" className="">
+      <span className="">
+         <GoPerson  className="size-6"/>
+      </span>
+     
     </Link>
   );
 };
