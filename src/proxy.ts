@@ -8,7 +8,7 @@ const publicRoutes = [
   "/forgot-password",
   "/reset-password",
 ];
-const protectedRoutes = ["/", "/notifications"];
+const protectedRoutes = ["/", "/like", "/profile"];
 
 export default async function proxy(req: NextRequest) {
   const currentPath = req.nextUrl.pathname;
