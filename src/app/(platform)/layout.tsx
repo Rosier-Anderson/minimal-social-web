@@ -1,7 +1,11 @@
 import Header from "../../ui/(platform)/_components/Header";
 import Sidebar from "../../ui/(platform)/_components/Sidebar";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function PlatformLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div
       className="size-screen
@@ -9,7 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     >
       <Header className="sm:col-start-2" />
       <Sidebar className="row-start-3 sm:row-start-1 sm:row-span-3" />
-      <div className="sm:row-span-2">{children}</div>
+      <div className="sm:row-span-2 flex justify-center">{children}</div>
     </div>
   );
 }
