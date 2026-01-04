@@ -6,10 +6,10 @@ import { usePathname } from "next/navigation";
 export default function NavLinks() {
   const pathname = usePathname();
   return (
-    <nav className=" flex items-center justify-center gap-4 bg-gray-200 rounded-lg w-xs mx-auto h-12 p-2 ">
+    <nav className=" flex items-center justify-center gap-4 bg-text-primary rounded-lg w-xs mx-auto h-12 p-2 ">
       {linksTab.map((link) => {
         const isActive =
-          pathname.includes(link.name.toLocaleLowerCase()) 
+          pathname == link.href
 
         return (
           <Link
