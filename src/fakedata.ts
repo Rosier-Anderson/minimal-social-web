@@ -80,5 +80,6 @@ export const FakeData = [
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=re",
     time: "Mar 1",
     content: "Another update went out earlier this week.",
+      image: "https://picsum.photos/id/238/200/300"
   },
 ];
