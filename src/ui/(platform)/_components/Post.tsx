@@ -4,9 +4,18 @@ import { BsThreeDots } from "react-icons/bs";
 import { FaRegComment, FaRegHeart } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
 import { ProfileRing } from "../../components/global/ProfileRing";
-
-export default function Post({ props }) {
-  const { avatar, username, time, content, image } = props;
+type PostProps = {
+  props: {
+    id: number;
+    avatar: string;
+    username: string;
+    time: string;
+    content: string;
+    image: string;
+  };
+};
+export default function Post(props: PostProps) {
+  const { avatar, username, time, content, image } = props.props;
   return (
     <>
       <article className="border-b border-background-primary  w-full mt-2  ">
@@ -24,7 +33,13 @@ export default function Post({ props }) {
     </>
   );
 }
-const PostContent = ({ image, content }) => {
+const PostContent = ({
+  image,
+  content,
+}: {
+  image: string;
+  content: string;
+}) => {
   return (
     <div className="">
       <div className="">
@@ -44,7 +59,7 @@ const PostContent = ({ image, content }) => {
     </div>
   );
 };
-const PostProfile = ({ avatar }) => {
+const PostProfile = ({ avatar }: { avatar: string }) => {
   return (
     <div className="flex items-start justify-between gap-4 h-full ">
       <ProfileRing innerInnerClassName="bg-white">
@@ -65,7 +80,7 @@ const PostProfile = ({ avatar }) => {
   );
 };
 
-const PostInfo = ({ username, time }) => {
+const PostInfo = ({ username, time }: { username: string; time: string }) => {
   return (
     <div className="flex flex-col items-start justify-between w-full ">
       <div className="flex justify-between items-start w-full gap-1 mr-auto ">

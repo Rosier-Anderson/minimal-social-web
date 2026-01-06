@@ -1,5 +1,6 @@
 import { FakeData } from "@/src/fakedata";
 import Post from "@/src/ui/(platform)/_components/Post";
+import { Suspense } from "react";
 
 export default function Page() {
   const data = FakeData;
