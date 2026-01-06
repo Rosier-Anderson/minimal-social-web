@@ -3,21 +3,18 @@ import Link from "next/link";
 import { BsThreeDots } from "react-icons/bs";
 import { FaRegComment, FaRegHeart } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
+import { ProfileRing } from "../../components/global/ProfileRing";
 
 export default function Post({ props }) {
-  const { id, avatar, username, time, content, image} = props;
+  const { avatar, username, time, content, image } = props;
   return (
     <>
-      <article className="border-b border-gray-300 w-full mt-2  ">
+      <article className="border-b border-background-primary  w-full mt-2  ">
         <div className="flex w-sm sm:w-xl h-[200px] mx-auto ">
           <PostProfile avatar={avatar} />
-
           <div className="flex flex-col items-start   w-full ">
             <PostInfo username={username} time={time} />
-
-   
-              <PostContent image={image} content={content} />
-      
+            <PostContent image={image} content={content} />
             <div className="mt-auto">
               <PostStats />
             </div>
@@ -35,15 +32,14 @@ const PostContent = ({ image, content }) => {
       </div>
       <div className="">
         <figure className="relative w-56 h-28 ">
-           <Image
-          src={image}
-          alt="User picture"
-          loading="lazy"
-          className=""
-        fill
-        />
+          <Image
+            src={image}
+            alt="User picture"
+            loading="lazy"
+            className=""
+            fill
+          />
         </figure>
-       
       </div>
     </div>
   );
@@ -51,18 +47,20 @@ const PostContent = ({ image, content }) => {
 const PostProfile = ({ avatar }) => {
   return (
     <div className="flex items-start justify-between gap-4 h-full ">
-      <figure className="rounded-full overflow-hidden bg-gray-500">
-        <Link className="" href="">
-          <Image
-            src={avatar}
-            width={48}
-            height={48}
-            alt="User picture"
-            loading="lazy"
-            className=""
-          />
-        </Link>
-      </figure>{" "}
+      <ProfileRing innerInnerClassName="bg-white">
+        <figure className="rounded-full overflow-hidden">
+          <Link className="" href="">
+            <Image
+              src={avatar}
+              width={45}
+              height={45}
+              alt="User picture"
+              loading="lazy"
+              className=""
+            />
+          </Link>
+        </figure>{" "}
+      </ProfileRing>
     </div>
   );
 };

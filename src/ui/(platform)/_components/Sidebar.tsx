@@ -2,61 +2,64 @@
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/src/utils";
-
-import { GoHome, GoPerson, GoPlus } from "react-icons/go";
-import { BsSendPlus } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
 import { usePathname } from "next/navigation";
-import { LiaSearchSolid } from "react-icons/lia";
-
+import { sideNavTabs } from "@/src/constants";
+import { GoPerson } from "react-icons/go";
+import { ProfileRing } from "../../components/global/ProfileRing";
 
 type SidebarProps = React.HTMLAttributes<HTMLElement>;
-const Sidebar = ({ className }: SidebarProps) => {
-   const pathname = usePathname()
-  const sideNavTabs = [
-    { id: 1, name: "Home", href: "/", icon: GoHome  },
-    {
-      id: 2,
-      name: "Conversation",
-      href: "/conversation",
-      icon: GoPlus,
-    },
-    { id: 3, name: "Plus", href: "/search", icon:   LiaSearchSolid },
-    { id: 4, name: "Like", href: "/like", icon: FaRegHeart  },
-  ];
 
+const Sidebar = ({ className }: SidebarProps) => {
+  const pathname = usePathname();
+  const isProfileActive = pathname === "/profile";
   return (
-    <div className={cn("flex  justify-center bg-black  sm:py-16", className)}>
+    <div
+      className={cn(
+        "flex justify-center bg-black sm:py-16 w-[50px]",
+        className
+      )}
+    >
       {" "}
       <aside>
-        <nav className=" flex items-center justify-between  sm:flex-col text-white p-1 w-sm h-full ">
+        <nav className=" flex items-center justify-between sm:flex-col text-white p-1 w-sm sm:w-auto  h-full ">
           <div className="hidden md:block">
             <Logo />
           </div>
-          <div className="flex sm:flex-col justify-between items-center w-sm sm:w-full gap-10">
+          <div className="flex  sm:flex-col justify-between items-center w-sm sm:w-full gap-10">
             {sideNavTabs.map((tab) => {
-              const TabIcon = tab.icon;
-             const isActive = pathname == tab.href;
-          
+              const isActive = pathname === tab.href;
+              const TabIcon = isActive ? tab.activeIcon : tab.icon;
               return (
                 <Link
                   key={tab.id}
                   href={tab.href}
                   className={cn(
-                    "flex items-center  justify-center cursor-pointer"
+                    "flex items-center justify-center cursor-pointer text-text-secondary w-full"
                   )}
                 >
-                  <TabIcon className={cn("size-6", {
-                  "text-red-400": isActive 
-                  })}/>
+                  <TabIcon
+                    className={cn("size-6", {
+                      "text-white ": isActive,
+                    "bg-neutral-800  rounded ":
+                        tab.name === "CreateThread",
+                    })}
+                  />
                 </Link>
               );
             })}
             <div className="sm:hidden"></div>
           </div>
 
-          <div className="">
-            <Profile />
+          <div className="  ">
+            <Link href="/profile" className="">
+              <ProfileRing
+                innerClassName={cn("bg-text-secondary", {
+                  "bg-white": isProfileActive,
+                })}
+              >
+                <GoPerson className="size-6" />
+              </ProfileRing>
+            </Link>
           </div>
         </nav>
       </aside>
@@ -79,16 +82,6 @@ const Logo = () => {
         </Link>
       </figure>
     </>
-  );
-};
-const Profile = ({user}) => {
-  return (
-    <Link href="/profile" className="">
-      <span className="">
-         <GoPerson  className="size-6"/>
-      </span>
-     
-    </Link>
   );
 };
 

@@ -12,7 +12,7 @@ export default function Header({ className }: HeaderProps) {
   if (hideHeader) return null;
   return (
     <div className={cn("", className)}>
-      <header className="text-sm sm:text-md font-bold ">
+      <header className="text-sm sm:text-md font-semibold ">
         <NavLinks />
       </header>
     </div>
