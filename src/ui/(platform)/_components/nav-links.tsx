@@ -8,8 +8,7 @@ export default function NavLinks() {
   return (
     <nav className=" flex items-center justify-center gap-4 bg-text-primary rounded-lg w-xs mx-auto h-12 p-2 ">
       {linksTab.map((link) => {
-        const isActive =
-          pathname == link.href
+        const isActive = pathname == link.href;
 
         return (
           <Link
@@ -22,7 +21,7 @@ export default function NavLinks() {
               }
             )}
           >
-            <p className="">{link.name}</p>
+            {link.name}
           </Link>
         );
       })}
