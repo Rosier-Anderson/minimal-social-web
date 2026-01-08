@@ -7,6 +7,11 @@ export default async function ProfileLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const res = await fetch("http://localhost:3000/api/users", {
+    cache: "no-store",
+  });
+  const data = await res.json();
+  console.log(data);
   return (
     <div className="flex flex-col gap-6 pt-4">
       <section className="profile flex ">
