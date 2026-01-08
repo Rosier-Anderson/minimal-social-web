@@ -1,7 +1,16 @@
-import React from "react";
+import SearchBar from "./search-bar";
 
 function Page() {
-  return <div>search</div>;
+  return (
+    <div className="">
+      <header className="">
+        <strong>Search</strong>
+      </header>
+      <div className="">
+        <SearchBar />
+      </div>
+    </div>
+  );
 }
 
 export default Page;
