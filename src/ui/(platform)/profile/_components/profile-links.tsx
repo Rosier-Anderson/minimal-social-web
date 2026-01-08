@@ -1,16 +1,16 @@
 "use client";
 
-import {linksProfileTabs} from "@/src/constants";
-import {cn} from "@/src/utils";
+import { profileLinksTabs } from "@/src/constants";
+import { cn } from "@/src/utils";
 import Link from "next/link";
-import {usePathname} from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export default function ProfileLinks() {
   const pathname = usePathname();
 
   return (
     <div className="flex justify-between gap-2 border-b border-border-primary text-text-secondary">
-      {linksProfileTabs.map((link) => {
+      {profileLinksTabs.map((link) => {
         const isActive = pathname === link.href;
 
         return (

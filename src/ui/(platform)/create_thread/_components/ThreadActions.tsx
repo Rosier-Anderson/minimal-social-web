@@ -1,9 +1,9 @@
 "use client";
 
-import React, {useRef, useState} from "react";
-import {HiOutlineEmojiHappy} from "react-icons/hi";
-import {IoLocationOutline} from "react-icons/io5";
-import {LuImagePlus} from "react-icons/lu";
+import React, { useRef, useState } from "react";
+import { HiOutlineEmojiHappy } from "react-icons/hi";
+import { IoLocationOutline } from "react-icons/io5";
+import { LuImagePlus } from "react-icons/lu";
 
 export default await function ThreadActions() {
   const [preview, setPreview] = useState("");
@@ -16,7 +16,7 @@ export default await function ThreadActions() {
   return (
     <div className="flex w-20 justify-between my-auto  ">
       <label htmlFor="thread_image">
-        <LuImagePlus className="size-5" />
+        <LuImagePlus className="size-5 cursor-pointer" />
       </label>
       <input
         hidden
@@ -25,25 +25,20 @@ export default await function ThreadActions() {
         name="thread_image"
         type="file"
         placeholder=""
-        className="cursor-pointer"
+        className=""
       />
       <label htmlFor="thread_emoji">
-        <HiOutlineEmojiHappy className="size-5" />
+        <HiOutlineEmojiHappy className="size-5 cursor-pointer" />
       </label>
-      <input
-        hidden
-        id="thread_emoji"
-        name="thread_emoji"
-        className="cursor-pointer"
-      />
-      <label htmlFor="thread_localisation">
-        <IoLocationOutline className="size-5" />
+      <input hidden id="thread_emoji" name="thread_emoji" className="" />
+      <label htmlFor="thread_localisation ">
+        <IoLocationOutline className="size-5 cursor-pointer" />
       </label>
       <input
         hidden
         id="thread_localisation"
         name="thread_localisation"
-        className="cursor-pointer"
+        className=""
       />
     </div>
   );
