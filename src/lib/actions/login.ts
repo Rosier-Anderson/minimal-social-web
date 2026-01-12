@@ -1,67 +1,53 @@
 "use server";
 import z from "zod";
-import createSession from "./session";
+import getDatabaseClient from "../../db/turso";
+import { LoginFormSchema, UserDataSchema } from "../zodSchema";
+
 import { redirect } from "next/navigation";
-import { errors } from "jose";
-// test user
-const testUser = {
-  id: "1",
-  email: "m@exemple.com",
-  password: "12345678",
+import createSession from "./session";
+import { VerifyPassword } from "@/src/helper";
+
+type User = {
+  id: number;
+  username: string;
+  email: string;
+  password: string;
 };
 
-const LoginFormSchema = z.object({
-  email: z.email({ error: "Please enter a valid email." }).trim(),
-  password: z
-    .string()
-    .min(8, { error: "Be at least 8 characters long" })
-    .trim(),
-});
-
-export default async function login(prevState: unknown, formData: FormData) {
-  const validatedFields = LoginFormSchema.safeParse({
+export default async function login(_: unknown, formData: FormData) {
+  const ParseFormData = LoginFormSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
   });
-
-  if (!validatedFields.success) {
+  if (!ParseFormData.success) {
     return {
-      errors: z.treeifyError(validatedFields.error),
+      errors: z.treeifyError(ParseFormData.error),
     };
   }
-  const { email, password } = validatedFields.data;
-  // database query  here
+  const { email, password } = ParseFormData.data;
+  try {
+    const client = await getDatabaseClient();
+    const rawData = await client.execute(
+      "SELECT * FROM users WHERE email = ?",
+      [email]
+    );
+    const user = rawData.rows[0] as unknown as User;
+    if (!user) {
+      return { error: "Invalid email or password" };
+    }
 
-  if (email !== testUser.email || password !== testUser.password) {
-    return {
-      errors: { errors: ["Invalid email or password"] },
-    };
+    const { id, password: userPassword } = user;
+
+    const validPassword = await VerifyPassword(password, userPassword);
+    if (!validPassword) {
+      return { error: "Invalid email or password" };
+    }
+    await createSession(id);
+    redirect("/");
+  } catch (error: any) {
+    if (error.digest?.startsWith("NEXT_REDIRECT")) {
+      throw error;
+    }
+    console.log("Something went wrong", error);
   }
-  await createSession(testUser.id);
-  redirect("/");
 }
-
-// const rawData = Object.fromEntries(formData);
-// const formDataResult = formDataSchema.safeParse(rawData);
-// if (!formDataResult.success) {
-//   console.log(z.flattenError(formDataResult.error));
-//   return {
-//     errors: z.flattenError(formDataResult.error),
-//   };
-// }
-// const { email, password } = formDataResult.data;
-// // database query  here
-// // --
-// if (email !== testUser.email || password !== testUser.password) {
-//   return {
-//     error: "Invalid email or password",
-//     //  safeParse testUser and formDataResult by ommitting the id with typescript
-//     // errors: {
-//     //   properties: {
-//     //     email: {
-//     //       errors: ["Invalid email or password"],
-//     //     },
-//     //   },
-//     // },
-//   };
-// }

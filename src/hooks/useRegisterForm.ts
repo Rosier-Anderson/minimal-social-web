@@ -1,13 +1,13 @@
 "use client";
 import { useState } from "react";
 interface FormState {
-  name: string;
+  username: string;
   email: string;
   password: string;
   confirmPassword: string;
 }
 const initialState: FormState = {
-  name: "",
+  username: "",
   email: "",
   password: "",
   confirmPassword: "",

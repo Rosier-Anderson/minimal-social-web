@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import RegisterForm from "./register-form";
 import Link from "next/link";
 
@@ -15,7 +15,10 @@ function SignUp() {
             Enter your information to create an account
           </p>
         </div>
-        <RegisterForm />
+        <Suspense>
+          <RegisterForm />
+        </Suspense>
+
         <SignInLink />
       </div>
     </div>

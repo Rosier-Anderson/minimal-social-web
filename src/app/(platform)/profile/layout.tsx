@@ -11,7 +11,7 @@ export default async function ProfileLayout({
     cache: "no-store",
   });
   const data = await res.json();
-  console.log(data);
+  console.log(data.rows);
   return (
     <div className="flex flex-col gap-6 pt-4">
       <section className="profile flex ">

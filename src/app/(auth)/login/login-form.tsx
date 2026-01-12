@@ -1,8 +1,10 @@
 "use client";
 import { useLoginForm } from "@/src/hooks/useLoginForm";
 import login from "@/src/lib/actions/login";
+import { ButtonSpinnerSkeleton } from "@/src/ui/skeletons";
 
 import Link from "next/link";
+
 import React, { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
@@ -28,12 +30,16 @@ function LoginForm() {
           placeholder="m@exemple.com"
           className="p-3 w-full text-base rounded-lg h-11 sm:h-12 bg-gray-100 outline-neutral-950"
         />
-        {state?.errors && <p>{state.errors.properties?.email?.errors}</p>}
+        {state?.errors && (
+          <p className="text-xs text-red-500 ">
+            {state.errors.properties?.email?.errors}
+          </p>
+        )}
         {state?.errors && (
           <p className="text-xs text-red-500 ">{state.errors.errors}</p>
         )}
       </div>
-      {/* {state?.error && <p className="text-xs text-red-500 ">{state?.error}</p>} */}
+
       <div className="">
         <div className="flex justify-between ">
           {" "}
@@ -46,7 +52,6 @@ function LoginForm() {
             Forgot password?
           </Link>
         </div>
-
         <input
           name="password"
           value={formState.password}
@@ -61,8 +66,12 @@ function LoginForm() {
           <p className="text-xs text-red-500 ">
             {state.errors.properties?.password?.errors}
           </p>
+        )}{" "}
+        {state?.error && (
+          <p className="text-xs text-red-500 ">{state?.error}</p>
         )}
       </div>
+
       <SubmitButton />
     </form>
   );
@@ -76,7 +85,7 @@ function SubmitButton() {
       type="submit"
       className="bg-black text-white w-full text-base rounded-lg h-11 sm:h-12 cursor-pointer"
     >
-      {status.pending ? "Login in..." : "Login"}
+      {status.pending ? <ButtonSpinnerSkeleton /> : "Login"}
     </button>
   );
 }

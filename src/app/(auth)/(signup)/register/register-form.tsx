@@ -1,6 +1,7 @@
 "use client";
 import { useRegisterForm } from "@/src/hooks/useRegisterForm";
 import register from "@/src/lib/actions/register";
+import { ButtonSpinnerSkeleton } from "@/src/ui/skeletons";
 import React, { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
@@ -18,14 +19,14 @@ function RegisterForm() {
       className=" flex flex-col gap-4 text-base "
     >
       <div className="flex flex-col gap-2">
-        <label htmlFor="name">User name</label>
+        <label htmlFor="username">User name</label>
         <input
-          name="name"
-          value={formState.name}
+          name="username"
+          value={formState.username}
           required
-          onChange={(e) => handleChange("name", e.target.value)}
-          id="name"
-          type="name"
+          onChange={(e) => handleChange("username", e.target.value)}
+          id="username"
+          type="username"
           placeholder="John Doe"
           className="p-3 w-full text-base rounded-lg h-11 sm:h-12 bg-gray-100 outline-neutral-950"
         />
@@ -34,7 +35,7 @@ function RegisterForm() {
         )} */}
         {state?.errors && (
           <p className="text-xs text-red-500 ">
-            {state.errors.properties?.name?.errors.toString()}
+            {state.errors.properties?.username?.errors.toString()}
           </p>
         )}
       </div>
@@ -108,7 +109,7 @@ function SubmitButton() {
       type="submit"
       className="bg-black text-white w-full text-base rounded-lg h-11 sm:h-12 cursor-pointer"
     >
-      {status.pending ? "Creating..." : "Create an account"}
+      {status.pending ? <ButtonSpinnerSkeleton /> : "Login"}
     </button>
   );
 }
