@@ -17,14 +17,14 @@ export default async function register(prevState: unknown, formData: FormData) {
       };
     }
     const { username, email, password } = ParserRegisterData.data;
-    const Hashed = await HashPassword(password);
+
     const client = await getDatabaseClient();
+    const Hashed = await HashPassword(password);
     await client.execute(
       "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
       [username, email, Hashed]
     );
-  } catch (error) {
-    console.log("Something went wrong");
+  } catch (error: any) {
+    console.log("Something went wrong", error);
   }
-  redirect("/login");
 }

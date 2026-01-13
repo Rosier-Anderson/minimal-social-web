@@ -1,7 +1,11 @@
 "use server";
 import z from "zod";
 import getDatabaseClient from "../../db/turso";
-import { LoginFormSchema, UserDataSchema } from "../zodSchema";
+import {
+  LoginFormSchema,
+  UserDataSchema,
+  idToStringSchema,
+} from "../zodSchema";
 
 import { redirect } from "next/navigation";
 import createSession from "./session";
@@ -31,18 +35,19 @@ export default async function login(_: unknown, formData: FormData) {
       "SELECT * FROM users WHERE email = ?",
       [email]
     );
+
     const user = rawData.rows[0] as unknown as User;
     if (!user) {
       return { error: "Invalid email or password" };
     }
 
     const { id, password: userPassword } = user;
-
+    const idToString = id.toString();
     const validPassword = await VerifyPassword(password, userPassword);
     if (!validPassword) {
       return { error: "Invalid email or password" };
     }
-    await createSession(id);
+    await createSession(idToString);
     redirect("/");
   } catch (error: any) {
     if (error.digest?.startsWith("NEXT_REDIRECT")) {

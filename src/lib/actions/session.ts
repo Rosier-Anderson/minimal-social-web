@@ -6,12 +6,12 @@ import { cookies } from "next/headers";
 const secretKey = process.env.SESSION_SECRET;
 const encodedKey = new TextEncoder().encode(secretKey);
 type SessionPayload = {
-  sessionUserId: number;
+  userId: string;
   expiresAt: number;
 };
-export default async function createSession(sessionUserId: number) {
+export default async function createSession(userId: string) {
   const expiresAt = Date.now() + 7 * 24 * 60 * 60 * 1000;
-  const session = await encrypt({ sessionUserId, expiresAt });
+  const session = await encrypt({ userId, expiresAt });
   (await cookies()).set("session", session, {
     httpOnly: true,
     secure: true,
@@ -29,6 +29,7 @@ export async function encrypt(payload: SessionPayload) {
 
 export async function decrypt(session?: string) {
   if (!session) {
+    console.warn("No session token provided");
     return null;
   }
   try {

@@ -1,18 +1,21 @@
-// src/app/api/users/route.ts
-
-import { turso } from "@/src/db/turso";
+import getDatabaseClient from "@/src/db/turso";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const users = await turso.execute("SELECT * FROM users");
+  const client = await getDatabaseClient();
+  const users = await client.execute("SELECT * FROM users");
   return NextResponse.json(users);
 }
 
 export async function POST(request: Request) {
+  const client = await getDatabaseClient();
   const body = await request.json();
-  await turso.execute(
+  await client.execute(
     "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
     [body.username, body.email, body.password]
   );
   return NextResponse.json({ success: true });
 }
+export const config = {
+  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+};

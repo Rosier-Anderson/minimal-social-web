@@ -7,13 +7,14 @@ const publicRoutes = [
   "/forgot-password",
   "/reset-password",
 ];
-const protectedRoutes = [, "/like", "/profile"];
+const protectedRoutes = ["/", "/like", "/profile"];
 
 export default async function proxy(req: NextRequest) {
   const currentPath = req.nextUrl.pathname;
   const isProtectedRoutes: boolean = protectedRoutes.includes(currentPath);
   const isPublicRoutes: boolean = publicRoutes.includes(currentPath);
   const cookie = req.cookies.get("session")?.value;
+
   const session = await decrypt(cookie);
   if (isProtectedRoutes && !session?.userId) {
     return NextResponse.redirect(new URL("/login", req.nextUrl));

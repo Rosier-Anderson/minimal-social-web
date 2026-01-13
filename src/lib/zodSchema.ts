@@ -27,3 +27,5 @@ export const UserDataSchema = z.object({
   email: z.string(),
   password: z.string(),
 });
+
+export const idToStringSchema = z.number().transform((val) => String(val));
