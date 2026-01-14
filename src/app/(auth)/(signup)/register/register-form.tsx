@@ -1,23 +1,22 @@
 "use client";
-import { useRegisterForm } from "@/src/hooks/useRegisterForm";
+import {useRegisterForm} from "@/src/hooks/useRegisterForm";
 import register from "@/src/lib/actions/register";
-import { ButtonSpinnerSkeleton } from "@/src/ui/skeletons";
-import React, { useActionState } from "react";
-import { useFormStatus } from "react-dom";
+import {ButtonSpinnerSkeleton} from "@/src/ui/skeletons";
+import React, {useActionState} from "react";
+import {useFormStatus} from "react-dom";
 
 function RegisterForm() {
   const [state, registerAction, isPending] = useActionState(
     register,
     undefined
   );
-  const { formState, handleChange, resetForm } = useRegisterForm();
-
+  const {formState, handleChange, resetForm} = useRegisterForm();
+ console.log(state)
   return (
     <form
       action={registerAction}
       name="registerForm"
-      className=" flex flex-col gap-4 text-base "
-    >
+      className=" flex flex-col gap-4 text-base ">
       <div className="flex flex-col gap-2">
         <label htmlFor="username">User name</label>
         <input
@@ -30,9 +29,7 @@ function RegisterForm() {
           placeholder="John Doe"
           className="p-3 w-full text-base rounded-lg h-11 sm:h-12 bg-gray-100 outline-neutral-950"
         />
-        {/* {showError && (
-          <p className="text-xs text-red-500 ">Please enter your name</p>
-        )} */}
+        {state?.error && <p className="text-xs text-red-500 ">{state.error.username}</p>}
         {state?.errors && (
           <p className="text-xs text-red-500 ">
             {state.errors.properties?.username?.errors.toString()}
@@ -51,6 +48,7 @@ function RegisterForm() {
           placeholder="m@exemple.com"
           className="p-3 w-full text-base rounded-lg h-11 sm:h-12 bg-gray-100 outline-neutral-950"
         />
+        {state?.error && <p className="text-xs text-red-500 ">{state.error.email}</p>}
         {state?.errors && (
           <p className="text-xs text-red-500 ">
             {state.errors.properties?.email?.errors.toString()}
@@ -107,8 +105,7 @@ function SubmitButton() {
   return (
     <button
       type="submit"
-      className="bg-black text-white w-full text-base rounded-lg h-11 sm:h-12 cursor-pointer"
-    >
+      className="bg-black text-white w-full text-base rounded-lg h-11 sm:h-12 cursor-pointer">
       {status.pending ? <ButtonSpinnerSkeleton /> : "Login"}
     </button>
   );

@@ -1,15 +1,11 @@
 "use server";
 import z from "zod";
 import getDatabaseClient from "../../db/turso";
-import {
-  LoginFormSchema,
-  UserDataSchema,
-  idToStringSchema,
-} from "../zodSchema";
+import {LoginFormSchema, UserDataSchema} from "../zodSchema";
 
-import { redirect } from "next/navigation";
+import {redirect} from "next/navigation";
 import createSession from "./session";
-import { VerifyPassword } from "@/src/helper";
+import {VerifyPassword} from "@/src/helper";
 
 type User = {
   id: number;
@@ -28,7 +24,7 @@ export default async function login(_: unknown, formData: FormData) {
       errors: z.treeifyError(ParseFormData.error),
     };
   }
-  const { email, password } = ParseFormData.data;
+  const {email, password} = ParseFormData.data;
   try {
     const client = await getDatabaseClient();
     const rawData = await client.execute(
@@ -38,17 +34,17 @@ export default async function login(_: unknown, formData: FormData) {
 
     const user = rawData.rows[0] as unknown as User;
     if (!user) {
-      return { error: "Invalid email or password" };
+      return {error: "Invalid email or password"};
     }
 
-    const { id, password: userPassword } = user;
-    const idToString = id.toString();
+    const {id, password: userPassword, username} = user;
     const validPassword = await VerifyPassword(password, userPassword);
     if (!validPassword) {
-      return { error: "Invalid email or password" };
+      return {error: "Invalid email or password"};
     }
-    await createSession(idToString);
-    redirect("/");
+    await createSession(id.toString(), username);
+    return redirect("/");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.digest?.startsWith("NEXT_REDIRECT")) {
       throw error;
