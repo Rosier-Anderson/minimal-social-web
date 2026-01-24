@@ -42,20 +42,18 @@ const PostContent = ({
 }) => {
   return (
     <div className="">
-      <div className="">
-        <p className="">{content}</p>
-      </div>
-      <div className="">
-        <figure className="relative w-56 h-28 ">
-          <Image
-            src={image}
-            alt="User picture"
-            loading="lazy"
-            className=""
-            fill
-          />
-        </figure>
-      </div>
+      <p className="">{content}</p>
+
+      <figure className="relative w-56 h-28 ">
+        <Image
+          src={image}
+          alt="User picture"
+          loading="lazy"
+          className=""
+          fill
+          sizes="120px"
+        />
+      </figure>
     </div>
   );
 };

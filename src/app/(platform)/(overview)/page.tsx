@@ -1,8 +1,14 @@
-import {FakeData} from "@/src/fakedata";
-import Post from "@/src/ui/(platform)/_components/Post";
-import {Suspense} from "react";
+import { FakeData } from "@/src/fakedata";
+import { getSession } from "@/src/lib/actions/session";
+import { fetchUserById } from "@/src/lib/data/users-data";
 
-export default function Page() {
+import Post from "@/src/ui/(platform)/_components/Post";
+
+export default async function Page() {
+  const sessionUser = getSession();
+  if (!sessionUser) return null;
+  const data2 = await fetchUserById(8);
+  console.log(data2);
   const data = FakeData;
   return (
     <main className=" min-w-md sm:w-2xl   border border-gray-300 bg-white rounded-xl overflow-auto no-scrollbar scroll-smooth ">

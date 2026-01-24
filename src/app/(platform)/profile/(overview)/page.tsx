@@ -1,7 +1,10 @@
-import {FakeData} from "@/src/fakedata";
+import { FakeData } from "@/src/fakedata";
 import Post from "@/src/ui/(platform)/_components/Post";
-
-export default function Profile() {
+type PageProps = {
+  params: Promise<{ profile_username: string }>;
+};
+export default function Profile({ params }: PageProps) {
+  const session = "@anderson";
   const data = FakeData;
   return (
     <>

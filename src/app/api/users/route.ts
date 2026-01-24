@@ -1,4 +1,5 @@
 import getDatabaseClient from "@/src/db/turso";
+import { User } from "@/src/interfaces";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -16,6 +17,3 @@ export async function POST(request: Request) {
   );
   return NextResponse.json({ success: true });
 }
-export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
-};

@@ -1,31 +1,35 @@
 "use client";
+import { getSession } from "@/src/lib/actions/session";
 import ThreadActions from "@/src/ui/(platform)/create_thread/_components/ThreadActions";
 import ThreadAuthor from "@/src/ui/(platform)/create_thread/_components/ThreadAuthor";
-import {FormEvent, useRef} from "react";
+import { FormEvent, useRef } from "react";
 import z from "zod";
 
 const FormDataSchema = z.object({
-  thread_content: z.string(),
+  thread_content: z.string().trim(),
   thread_emoji: z.string(),
   thread_image: z.instanceof(File),
   thread_localisation: z.string(),
 });
-export default function ThreadForm() {
+type ThreadFormProps = {
+  session: { userId: string; username: string; avatar: string };
+};
+export default function ThreadForm(session: ThreadFormProps) {
+  const ss = getSession();
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const formResult = FormDataSchema.safeParse(
-      Object.fromEntries(formData.entries())
-    );
+    const rawData = Object.fromEntries(formData.entries());
+    const formResult = FormDataSchema.safeParse({ ...rawData });
 
-    const currentThread = localStorage.getItem("threads");
-    if (!currentThread) {
-      localStorage.setItem("threads", JSON.stringify(formResult.data));
-    } else {
-      const threadData = localStorage.getItem("threads");
-      console.log(threadData);
-    }
+    //   const currentThread = localStorage.getItem("threads");
+    //   if (!currentThread) {
+    //     localStorage.setItem("threads", JSON.stringify(formResult.data));
+    //   } else {
+    //     const threadData = localStorage.getItem("threads");
+    //     console.log(threadData);
+    //   }
   };
 
   return (
@@ -36,13 +40,14 @@ export default function ThreadForm() {
           <ThreadAuthor />
 
           <div className="flex flex-col justify-between w-full">
-            <strong>Anderson</strong>
+            <strong>{session.session.username}</strong>
             <div className="w-full ">
               <textarea
                 className="h-6 text-sm outline-none resize-none"
                 name="thread_content"
                 id="thread_content"
-                placeholder="What's new"></textarea>
+                placeholder="What's new"
+              ></textarea>
             </div>{" "}
             {/* thread actions icons */}
             <ThreadActions />
@@ -51,7 +56,8 @@ export default function ThreadForm() {
               className="h-6 text-sm outline-none resize-none"
               name="thread_localisation"
               id="thread_localisation"
-              placeholder="Add to thread"></textarea>
+              placeholder="Add to thread"
+            ></textarea>
           </div>
         </div>
         <CreatePostButton />
@@ -63,7 +69,8 @@ const CreatePostButton = () => {
   return (
     <button
       type="submit"
-      className="ml-auto mb-2 mr-2  block w-16 text-center rounded-lg font-semibold border border-text-primary p-1 cursor-pointer">
+      className="ml-auto mb-2 mr-2  block w-16 text-center rounded-lg font-semibold border border-text-primary p-1 cursor-pointer"
+    >
       Post
     </button>
   );

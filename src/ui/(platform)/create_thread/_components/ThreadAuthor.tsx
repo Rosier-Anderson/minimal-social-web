@@ -1,5 +1,5 @@
 import React from "react";
-import {ProfileRing} from "../../../components/global/ProfileRing";
+import { ProfileRing } from "../../../components/global/ProfileRing";
 import Image from "next/image";
 
 export default function ThreadAuthor() {

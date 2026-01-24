@@ -9,13 +9,24 @@ export default async function getDatabaseClient() {
   return turso;
 }
 const client = await getDatabaseClient();
-await client.execute(`
+// await client.executeMultiple(`DROP TABLE users;
+// DROP TABLE threads`);
+await client.executeMultiple(`
   CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT NOT NULL UNIQUE,
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
-    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+    issuedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    avatar  TEXT
+  );
+  CREATE TABLE IF NOT EXISTS threads (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    author_id INTEGER NOT NULL,
+    content TEXT NOT NULL,
+    images TEXT,
+   issuedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (author_id) REFERENCES users(id)
   )
 `);
 

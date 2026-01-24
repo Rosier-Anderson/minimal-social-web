@@ -1,36 +1,42 @@
 // Interfaces for the Thread
 export interface User {
-  id: string;
-  name: string;
+  id: number;
   username: string;
-  avatar: string;
+  email: string;
+  password: string;
+  issuedAt: Date;
+  avatar?: string;
 }
 export interface Thread {
   id: number;
-  author: User;
+  author_id: number;
   content: string;
   images?: string[];
-  stats: ThreadStats;
+  issuedAt: Date;
+  stats: ThreadStats[];
+  comment?: ThreadComment[];
+  replies?: ThreadReplie[];
 }
 
 export interface ThreadStats {
   id: number;
+  author_id: number;
   likes: number;
   comments?: number;
   repost?: number;
 }
 
-export interface ThreadComments {
+export interface ThreadComment {
   id: number;
-  author: User;
+  author_id: number;
   content: string;
-  createdAt: string;
+  issuedAt: string;
   stats: ThreadStats;
 }
 
-export interface ThreadReplies {
+export interface ThreadReplie {
   id: number;
-  author: User;
+  author_id: number;
   contents: string;
   stats: ThreadStats;
 }
