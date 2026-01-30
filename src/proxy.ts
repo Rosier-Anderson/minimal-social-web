@@ -7,16 +7,14 @@ const publicRoutes = [
   "/forgot-password",
   "/reset-password",
 ];
-const protectedRoutes = ["/", "/like", "/profile"];
 
 export default async function proxy(req: NextRequest) {
   const currentPath = req.nextUrl.pathname;
-  const isProtectedRoutes: boolean = protectedRoutes.includes(currentPath);
   const isPublicRoutes: boolean = publicRoutes.includes(currentPath);
   const cookie = req.cookies.get("session")?.value;
 
   const session = await decrypt(cookie);
-  if (isProtectedRoutes && !session?.userId) {
+  if (!isPublicRoutes && !session?.userId) {
     return NextResponse.redirect(new URL("/login", req.nextUrl));
   }
   if (isPublicRoutes && session?.userId) {
@@ -24,3 +22,6 @@ export default async function proxy(req: NextRequest) {
   }
   return NextResponse.next();
 }
+export const config = {
+  matcher: ["/((?!api|_next|login|register).*)"],
+};

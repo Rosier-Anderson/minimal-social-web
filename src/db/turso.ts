@@ -6,6 +6,7 @@ export default async function getDatabaseClient() {
     url: process.env.TURSO_DATABASE_URL!,
     authToken: process.env.TURSO_AUTH_TOKEN!,
   });
+ 
   return turso;
 }
 const client = await getDatabaseClient();
@@ -25,7 +26,7 @@ await client.executeMultiple(`
     author_id INTEGER NOT NULL,
     content TEXT NOT NULL,
     images TEXT,
-   issuedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    issuedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (author_id) REFERENCES users(id)
   )
 `);

@@ -55,6 +55,7 @@ function LoginForm() {
         <input
           name="password"
           value={formState.password}
+          autoComplete="true"
           required
           onChange={(e) => handleChange("password", e.target.value)}
           id="password"

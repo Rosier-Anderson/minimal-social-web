@@ -14,7 +14,7 @@ async function CreateThread() {
         <ThreadForm session={payload} />
       </div>
     </div>
-  );
+  ); 
 }
 
 const ThreadHeader = () => {

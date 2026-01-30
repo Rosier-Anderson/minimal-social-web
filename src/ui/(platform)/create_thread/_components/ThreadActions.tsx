@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { HiOutlineEmojiHappy } from "react-icons/hi";
-import { IoLocationOutline } from "react-icons/io5";
-import { LuImagePlus } from "react-icons/lu";
+import React, {useRef, useState} from "react";
+import {HiOutlineEmojiHappy} from "react-icons/hi";
+import {IoLocationOutline} from "react-icons/io5";
+import {LuImagePlus} from "react-icons/lu";
 
 export default await function ThreadActions() {
   const [preview, setPreview] = useState("");
@@ -27,10 +27,10 @@ export default await function ThreadActions() {
         placeholder=""
         className=""
       />
-      <label htmlFor="thread_emoji">
+      {/* <label htmlFor="thread_emoji">
         <HiOutlineEmojiHappy className="size-5 cursor-pointer" />
       </label>
-      <input hidden id="thread_emoji" name="thread_emoji" className="" />
+      <input hidden id="thread_emoji" name="thread_emoji" className="" /> */}
       <label htmlFor="thread_localisation ">
         <IoLocationOutline className="size-5 cursor-pointer" />
       </label>

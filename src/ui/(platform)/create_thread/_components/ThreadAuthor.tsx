@@ -1,8 +1,15 @@
-import React from "react";
-import { ProfileRing } from "../../../components/global/ProfileRing";
-import Image from "next/image";
+"use client";
 
-export default function ThreadAuthor() {
+import React, {useState} from "react";
+import {ProfileRing} from "../../../components/global/ProfileRing";
+import Image from "next/image";
+type ThreadAuthorProps = {
+  avatar: string | null;
+};
+export default function ThreadAuthor(avatar: ThreadAuthorProps) {
+  console.log(avatar);
+  const [previewAvatar, setPreviewAvatar] = useState();
+
   return (
     <div className="">
       <div className="flex items-start justify-between  ">
