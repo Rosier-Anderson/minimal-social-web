@@ -2,7 +2,7 @@
 import { create } from "zustand";
 
 type CurrentUser = {
-  id: string;
+  userId: string;
   username: string;
   avatar: string | null;
 };

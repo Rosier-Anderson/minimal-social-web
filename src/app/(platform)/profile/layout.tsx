@@ -1,4 +1,4 @@
-import { getSession } from "@/src/lib/actions/session";
+
 import ProfileLinks from "@/src/ui/(platform)/profile/_components/profile-links";
 import ProfileHeader from "@/src/ui/(platform)/profile/_components/ProfileHeader";
 import React from "react";
@@ -12,8 +12,8 @@ export default async function ProfileLayout({
   children: React.ReactNode;
   params: PageProps;
 }) {
-  const session = "@anderson";
-  // const sessionUser = await getSession();
+
+
 
   return (
     <div className="flex flex-col gap-6 pt-4">

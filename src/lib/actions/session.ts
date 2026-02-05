@@ -1,6 +1,5 @@
 "use server";
 
-import { useCurrentUserStore } from "@/src/store/useCurrentUser";
 import {SignJWT, jwtVerify, JWTPayload} from "jose";
 import {cookies} from "next/headers";
 
@@ -17,7 +16,7 @@ type CreateSessionPayload = {
   avatar: string;
   expiresAt: number;
 };
-type PublicSession = Omit<CreateSessionPayload, "expiresAt">;
+type CurrentUserProps = Omit<CreateSessionPayload, "expiresAt">;
 
 export default async function createSession(
   userId: string,
@@ -32,20 +31,19 @@ export default async function createSession(
     expires: expiresAt,
   });
 }
-export async function getSession() {
+export async function getCurrentUser() {
   const cookie = (await cookies()).get("session")?.value;
-  const payload = (await decrypt(cookie)) as PublicSession | undefined;
+  const payload = (await decrypt(cookie)) as CurrentUserProps | undefined;
   if (!payload) return null;
   const {userId, username, avatar} = payload;
   return {userId, username, avatar};
 }
 export async function createCurrentUser() {
-const {setCurrentUser} = useCurrentUserStore();
   const cookie = (await cookies()).get("session")?.value;
-  const payload = (await decrypt(cookie)) as PublicSession | undefined;
-  if (!payload) return null;
- 
- 
+  if (!cookie) console.warn("Not authenticated");
+  const payload = (await decrypt(cookie)) as CurrentUserProps | undefined;
+  if (!payload) console.warn("Invalid session");
+  return payload;
 }
 export async function deleteSession() {
   (await cookies()).delete("session");

@@ -1,14 +1,17 @@
 "use client";
-
-import React, {useState} from "react";
 import {ProfileRing} from "../../../components/global/ProfileRing";
 import Image from "next/image";
-type ThreadAuthorProps = {
-  avatar: string | null;
-};
-export default function ThreadAuthor(avatar: ThreadAuthorProps) {
-  console.log(avatar);
-  const [previewAvatar, setPreviewAvatar] = useState();
+import {useCurrentUser} from "../../_components/global/UserProvider";
+type ThreadAuthorProps =
+  | {
+      avatar: string | null;
+    }
+  | undefined;
+export default function ThreadAuthor() {
+  const currentUser: ThreadAuthorProps = useCurrentUser();
+  const isAvatar = `${currentUser?.avatar}`;
+
+  // const [previewAvatar, setPreviewAvatar] = useState();
 
   return (
     <div className="">
@@ -16,7 +19,7 @@ export default function ThreadAuthor(avatar: ThreadAuthorProps) {
         <ProfileRing innerInnerClassName="bg-white">
           <figure className="rounded-full overflow-hidden">
             <Image
-              src="https://api.dicebear.com/7.x/avataaars/svg?seed=sjfg"
+              src={`/images/profile2.png`}
               width={45}
               height={45}
               alt="User picture"
@@ -34,7 +37,7 @@ export default function ThreadAuthor(avatar: ThreadAuthorProps) {
           <ProfileRing innerInnerClassName="bg-white">
             <figure className="rounded-full overflow-hidden">
               <Image
-                src="https://api.dicebear.com/7.x/avataaars/svg?seed=sjfg"
+                src={`/images/profile2.png`}
                 width={20}
                 height={20}
                 alt="User picture"

@@ -23,5 +23,7 @@ export default async function proxy(req: NextRequest) {
   return NextResponse.next();
 }
 export const config = {
-  matcher: ["/((?!api|_next|login|register).*)"],
+  matcher: [
+    "/((?!api|_next\public|login|register|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|css)).*)",
+  ],
 };

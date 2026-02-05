@@ -11,7 +11,7 @@ function RegisterForm() {
     undefined
   );
   const {formState, handleChange, resetForm} = useRegisterForm();
- console.log(state)
+
   return (
     <form
       action={registerAction}

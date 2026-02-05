@@ -1,6 +1,8 @@
-import type { Metadata } from "next";
+import type {Metadata} from "next";
 import "../styles/globals.css";
-import { poppins } from "../ui/fonts";
+import {poppins} from "../ui/fonts";
+import UserProvider from "../ui/(platform)/_components/global/UserProvider";
+import {createCurrentUser} from "../lib/actions/session";
 
 export const metadata: Metadata = {
   title: "Minimal-social",
@@ -9,23 +11,21 @@ export const metadata: Metadata = {
   icons: [
     {
       url: "/logo-light.png",
-      href: "/public/logo-light.png",
+      href: "/public/images/logo-light.png",
     },
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await createCurrentUser();
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        //  // ${poppins.className}
-        className={`${poppins.className} antialiased bg-background`}
-      >
-        {children}
+      <body className={`${poppins.className} antialiased bg-background`}>
+        <UserProvider currentUser={user}>{children}</UserProvider>
       </body>
     </html>
   );

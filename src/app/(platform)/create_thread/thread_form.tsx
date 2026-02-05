@@ -1,8 +1,8 @@
 "use client";
-import {getSession} from "@/src/lib/actions/session";
+import {useCurrentUser} from "@/src/ui/(platform)/_components/global/UserProvider";
 import ThreadActions from "@/src/ui/(platform)/create_thread/_components/ThreadActions";
 import ThreadAuthor from "@/src/ui/(platform)/create_thread/_components/ThreadAuthor";
-import {FormEvent, useRef} from "react";
+import {FormEvent} from "react";
 import z from "zod";
 
 const FormDataSchema = z.object({
@@ -11,34 +11,30 @@ const FormDataSchema = z.object({
   thread_image: z.instanceof(File),
   thread_localisation: z.string(),
 });
-type ThreadFormProps = {
-  userId: string;
-  username: string;
-  avatar: string | null;
-};
-export default function ThreadForm({
-  userId,
-  username,
-  avatar,
-}: ThreadFormProps) {
+type ThreadFormProps =
+  | {
+      userId: string;
+      username: string;
+      avatar: string | null;
+    }
+  | undefined;
+export default function ThreadForm() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const formData = new FormData(e.currentTarget);
     const rawData = Object.fromEntries(formData.entries());
     const formResult = FormDataSchema.safeParse(rawData);
     console.log(formResult.data?.thread_image);
   };
-
+  const currentUser: ThreadFormProps = useCurrentUser();
   return (
     <div className="flex-1 flex flex-col rounded-2xl ">
       <form onSubmit={(e) => handleSubmit(e)} className="h-full m-4">
-        {/* content info */}
         <div className="flex gap-2  ">
-          <ThreadAuthor avatar={avatar} />
+          <ThreadAuthor />
 
           <div className="flex flex-col justify-between w-full">
-            <strong>{username}</strong>
+            <strong>{currentUser?.username}</strong>
             <div className="w-full ">
               <textarea
                 className="h-6 text-sm outline-none resize-none"
