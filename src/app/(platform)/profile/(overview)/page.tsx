@@ -9,7 +9,7 @@ export default function Profile({ params }: PageProps) {
   return (
     <>
       {data.map((thread) => (
-        <Post key={thread.id} props={thread} />
+        <Post key={thread.id} {...thread} />
       ))}
     </>
   );

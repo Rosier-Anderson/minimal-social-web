@@ -1,11 +1,11 @@
 "use server";
 
-import {RegisterFormchema} from "../zodSchema";
+import { RegisterFormchema } from "../zodSchema";
 import z from "zod";
-import {HashPassword} from "@/src/helper";
+import { HashPassword } from "@/src/helper";
 import getDatabaseClient from "@/src/db/turso";
 
-import {redirect} from "next/navigation";
+import { redirect } from "next/navigation";
 
 export default async function register(prevState: unknown, formData: FormData) {
   const client = await getDatabaseClient();
@@ -18,7 +18,7 @@ export default async function register(prevState: unknown, formData: FormData) {
         errors: z.treeifyError(ParserRegisterData.error),
       };
     }
-    const {username, email, password} = ParserRegisterData.data;
+    const { username, email, password } = ParserRegisterData.data;
 
     const existingUser = await client.execute(
       "SELECT * FROM users  WHERE username = ? OR email = ? ",
@@ -47,7 +47,7 @@ export default async function register(prevState: unknown, formData: FormData) {
       [username, email, Hashed]
     );
     return redirect("/");
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.digest?.startsWith("NEXT_REDIRECT")) {
       throw error;

@@ -6,7 +6,7 @@ export default async function getDatabaseClient() {
     url: process.env.TURSO_DATABASE_URL!,
     authToken: process.env.TURSO_AUTH_TOKEN!,
   });
- 
+
   return turso;
 }
 const client = await getDatabaseClient();
@@ -19,7 +19,7 @@ await client.executeMultiple(`
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
     issuedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-    avatar  TEXT
+    avatar TEXT 
   );
   CREATE TABLE IF NOT EXISTS threads (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

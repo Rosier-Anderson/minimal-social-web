@@ -1,7 +1,7 @@
 "use client";
-import {ProfileRing} from "../../../components/global/ProfileRing";
+import { ProfileRing } from "../../../components/global/ProfileRing";
 import Image from "next/image";
-import {useCurrentUser} from "../../_components/global/UserProvider";
+import { useCurrentUser } from "../../_components/global/UserProvider";
 type ThreadAuthorProps =
   | {
       avatar: string | null;
@@ -16,7 +16,7 @@ export default function ThreadAuthor() {
   return (
     <div className="">
       <div className="flex items-start justify-between  ">
-        <ProfileRing innerInnerClassName="bg-white">
+        <ProfileRing contentClassName="bg-white">
           <figure className="rounded-full overflow-hidden">
             <Image
               src={`/images/profile2.png`}
@@ -34,7 +34,7 @@ export default function ThreadAuthor() {
       <div className="flex flex-col items-center justify-center w-full p-2 gap-2">
         <span className="  bg-neutral-200 w-0.5 h-8"></span>
         <div className="flex items-start justify-between  ">
-          <ProfileRing innerInnerClassName="bg-white">
+          <ProfileRing contentClassName="bg-white">
             <figure className="rounded-full overflow-hidden">
               <Image
                 src={`/images/profile2.png`}

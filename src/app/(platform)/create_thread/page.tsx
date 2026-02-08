@@ -1,24 +1,30 @@
+"use client";
 import { TbMessageMinus } from "react-icons/tb";
 import ThreadForm from "./thread_form";
 import { CgMoreO } from "react-icons/cg";
+import { useState } from "react";
 
-
-async function CreateThread() {
-
+export default async function CreateThreadModal({ open }) {
+  if (!open) {
+    return null;
+  }
   return (
     <div className="size-screen flex items-center justify-center bg-neutral-600">
       <div className="flex flex-col  my-auto w-xl rounded-xl h-auto bg-white ">
         <ThreadHeader />
-        <ThreadForm  />
+        <ThreadForm />
       </div>
     </div>
-  ); 
+  );
 }
 
 const ThreadHeader = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <div className="flex p-4 justify-between items-center  border-b border-b-background-primary  ">
-      <button className="cursor-pointer">Cancel</button>
+      <button onClick={() => setIsOpen(true)} className="cursor-pointer">
+        Cancel
+      </button>
       <strong>New thread</strong>
       <div className="flex justify-center items-center gap-4">
         <button className="cursor-pointer">
@@ -31,5 +37,3 @@ const ThreadHeader = () => {
     </div>
   );
 };
-
-export default CreateThread;
