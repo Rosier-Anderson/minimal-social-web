@@ -19,7 +19,7 @@ await client.executeMultiple(`
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
     issuedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-    avatar TEXT 
+    avatar TEXT NOT NULL  DEFAULT "/images/profile.png"
   );
   CREATE TABLE IF NOT EXISTS threads (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

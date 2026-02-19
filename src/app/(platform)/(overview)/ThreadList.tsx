@@ -7,6 +7,7 @@ export default async function ThreadList() {
   return (
     <section className="flex flex-col justify-between gap-4">
       {data.map((thread) => (
+        console.log(thread.images),
         <Post key={thread.id} {...thread} />
       ))}
     </section>

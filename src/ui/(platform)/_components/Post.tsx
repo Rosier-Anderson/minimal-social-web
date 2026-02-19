@@ -3,7 +3,6 @@ import Link from "next/link";
 import { BsThreeDots } from "react-icons/bs";
 import { FaRegComment, FaRegHeart } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
-import { ProfileRing } from "../../components/global/ProfileRing";
 import { ThreadProfile } from "./ThreadProfile";
 
 type PostProps = {
@@ -23,7 +22,7 @@ export default function Post({
   content,
   images,
 }: PostProps) {
-  console.log(username);
+  console.log(images);
   return (
     <>
       <article className="border-b border-background-primary  w-full mt-2  ">
